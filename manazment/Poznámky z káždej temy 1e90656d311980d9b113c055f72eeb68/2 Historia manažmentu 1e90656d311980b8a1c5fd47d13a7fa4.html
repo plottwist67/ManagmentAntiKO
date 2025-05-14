@@ -1,0 +1,720 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>2. Historia manažmentu</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+       .back-to-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1e90656d-3119-80b8-a1c5-fd47d13a7fa4" class="page sans"><header><h1 class="page-title">2. Historia manažmentu</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Created</th><td><time>@May 4, 2025 5:16 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><p id="1ea0656d-3119-80ff-8a42-fe01bbe8da8f" class=""><strong>Key Concepts:</strong></p><ul id="1ea0656d-3119-8086-87b3-dfe40601f41a" class="bulleted-list"><li style="list-style-type:disc">Klasický manažment (vedecký, administrativný a byrokratický manažment)</li></ul><ul id="1ea0656d-3119-8070-bfec-fca82fdcdff7" class="bulleted-list"><li style="list-style-type:disc">Behavioristicka škola (škola medziludských vzťahov, organizačné správanie)</li></ul><ul id="1ea0656d-3119-809e-8c21-c4ec0b4b03be" class="bulleted-list"><li style="list-style-type:disc">Kvantitativný pristup</li></ul><ul id="1ea0656d-3119-8051-8a4f-e5c6c04df8c3" class="bulleted-list"><li style="list-style-type:disc">Systemový pristup</li></ul><ul id="1ea0656d-3119-80e1-8aa2-e07387f902b6" class="bulleted-list"><li style="list-style-type:disc">Kontingenčný(situačný) pristup</li></ul><p id="1ea0656d-3119-80aa-a2e0-ca02c3628e7e" class="">
+</p><h2 id="1ea0656d-3119-801d-a700-caf22e6e80f3" class="">Predklasicka škola </h2><p id="1ea0656d-3119-80f9-a332-f2080d071bf9" class="">Poskytuje uplne vychodiskové myšlienky, sa zaobera čiastkovou upravou podniku</p><p id="1ea0656d-3119-807c-a18a-d5f4affd27e9" class="">1880- prelomný rok</p><p id="1ea0656d-3119-80b0-a8d5-c73bef61a1e7" class="">Predstavitelia:</p><ul id="1ea0656d-3119-80ae-8af6-f67fa214c826" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background">Robert Owen</mark> (podnikateľ, uvedomil si potrebu socialných podmienok robotnikov v práce=zaoberal pracovnymi a socialnými otazkami, zlepšiť pracovné podmienky)</li></ul><ul id="1ea0656d-3119-800a-ae7d-cb50bbf9bc48" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background">Charles Baggage</mark> (otázky dielby prace a matematické metody na zdokonalenie zasobovania materialov/lepšie využitie zdrojov a zariadení. Je znamy machanickou kalkulačkou)</li></ul><ul id="1ea0656d-3119-805a-a2cf-f886303e18ed" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background">Henry Towne </mark>(prvý president Americkej spoločnosti srohych inžinierov ktorej ulohou bolo systemizovať poznatky o manažmente.  snažil sa zaoberať ekonomickymi aspektami technickej práce. zastavca využitia ukolovej mzdy(viacere zastavce ukol mz sú v klasickej teorie manažmentu))</li></ul><ul id="1ea0656d-3119-807b-b61a-e918fabdcf5c" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background">Daniel McCallum</mark> (zaoberal železničnou dopravou, snažil sa charakterizovať časové rozvrhnutia želez dopravy )</li></ul><ul id="1ea0656d-3119-80be-805f-e2b82d7efb42" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background">Henry Poor</mark> (bol vydavatelom časopisu o železniciach, charakterizoval časové rozvrhnutia dopravý)</li></ul><p id="1ea0656d-3119-8082-91a7-f26d8007ee47" class="">
+</p><p id="1ea0656d-3119-8015-aa44-c9a42eaa6318" class="">
+</p><h2 id="1ea0656d-3119-8063-b7d8-fb4b353622d7" class="">Section 1: Klasická škola</h2><p id="1ea0656d-3119-809b-9372-daeeee94c812" class="">Vytvorila zaklady rozvoja manažmentu</p><p id="1ea0656d-3119-804c-9eef-d327789e153c" class=""><em>Uloha</em>: zvyšovať produktivitu pracu a vykonnosť</p><p id="1ea0656d-3119-8048-a970-f8faa50330c2" class="">V čom bola podstata zvyšovania vykonnosti- </p><p id="1ea0656d-3119-80f8-aae8-f8b421fbb37b" class="">Nezohladnoval v dostatočnej miere socialné faktory(mysleli si že ludia su racionalny a vyberaju si konanie ktore im prinesie najvyššiu ekonom odmenu) </p><p id="1ea0656d-3119-808b-95c5-d13e6327416c" class=""><strong>Dôraz: na</strong> planovanie prace, technické požiadavky organizacie, predpoklady racionalneho a logickeho spravania.</p><p id="1ea0656d-3119-80ef-87bc-e9b37dd1e018" class="">Reprezentovaný školami:</p><ul id="1ea0656d-3119-8010-85b7-dd9c0be13947" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal_background">vedecký manažment</mark> (=vedecke riadenie=Taylorismus)</li></ul><ul id="1ea0656d-3119-807a-b824-f68c0650db0c" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal_background">administratuvný</mark> (teoria administrativného riadenia)</li></ul><ul id="1ea0656d-3119-8000-96e2-c2c4dcde97be" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-teal_background">byrokratický</mark> (byrokratický model organizacie)</li></ul><p id="1ea0656d-3119-8061-8dd7-d25348389883" class="">
+</p><h3 id="1ea0656d-3119-8024-bcf8-d0390311045c" class="">Vedecký (Taylorizmus)</h3><p id="1ea0656d-3119-805a-a186-fc7ef246d1aa" class="">— sa snažil zokonaliť vyrobne prostupy a zdokonaliť vykonnosť</p><p id="1ea0656d-3119-80b3-935c-e7ee93ba7e9e" class=""><mark class="highlight-purple_background">Kombinacia </mark><mark class="highlight-purple_background"><span style="border-bottom:0.05em solid">osôb</span></mark><mark class="highlight-purple_background"> a </mark><mark class="highlight-purple_background"><span style="border-bottom:0.05em solid">uloh</span></mark><mark class="highlight-purple_background">—&gt; ⬆️ efektivita  </mark></p><p id="1ea0656d-3119-805a-8db0-c73f38ec598d" class=""><strong>Akcent</strong>- pracovné metody, pristup zdola nahor(zlepšiť procesy<mark class="highlight-default_background">—&gt;zlepši sa cely vykon organizacie)</mark></p><p id="1ea0656d-3119-804f-9163-e89ba3e9d3cc" class=""><strong>Pozornosť:</strong> efektivnosť pracovnika, nie samotný pracovnik(vynachavame ľudsku zložku)</p><p id="1ea0656d-3119-8048-bb43-c23de3e3d353" class="">Predstavitelia:</p><ul id="1ea0656d-3119-805a-8703-ced81b896489" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background"><strong>F.W. Taylor</strong></mark> <ul id="1ea0656d-3119-80ef-986f-fc3ba63be009" class="bulleted-list"><li style="list-style-type:circle">hľadal spôsoby zlepšiť riadenie. </li></ul><ul id="1ea0656d-3119-80e8-be8e-cb21d496c5cd" class="bulleted-list"><li style="list-style-type:circle">sa zaoberal pohybovymi študiami-mali za účel zistiť  ako robi robotnik úlohu, ako dlho mu to trva a td, tieto študie=zaklad pre normovanie pracovnych vykonov=<mark class="highlight-yellow_background">normovanie prace</mark></li></ul><ul id="1ea0656d-3119-8046-8801-e08d170796de" class="bulleted-list"><li style="list-style-type:circle">na zaklade toho bola založena ú<mark class="highlight-yellow_background">kolova mzda</mark>. </li></ul><ul id="1ea0656d-3119-80a0-8349-d04a06152a15" class="bulleted-list"><li style="list-style-type:circle">optimalizácia času a systému</li></ul><ul id="1ea0656d-3119-800a-91e8-d699b85d7459" class="bulleted-list"><li style="list-style-type:circle">uplatňoval funkčný systém riadenia (=rozdeľoval procesy do jednotlivých funkcie, to narušuje princip jediného veducého.)</li></ul><ul id="1ea0656d-3119-80bf-98ed-fbc657745e92" class="bulleted-list"><li style="list-style-type:circle">zaoberal tym aké vlastnosťi musi mať manažer. charakterizoval 9 vlastnosti: inteligentny, vzdelani, energicky, a td. vytvaral v dielňach “<mark class="highlight-yellow_background">predakov</mark>”(=osôb, ktorí pomahali vytvoriť u manažerov tie vlastnosti, ktoré musia mať).  </li></ul><ul id="1ea0656d-3119-8061-a1ec-f0a80efb6b49" class="bulleted-list"><li style="list-style-type:circle">vytvoril <span style="border-bottom:0.05em solid">zaklady vedeckeho manažmentu(=</span>vytvoril skutočnu vedu o riadení, sa zaoberal vedeckým výberom a vicvikom pracovníkov, dosiahnuť harmoniu v prac skupinach)</li></ul></li></ul><ul id="1ea0656d-3119-80b5-953a-ea89fe32c9c1" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background"><strong>Henry Ford</strong></mark> (využival <mark class="highlight-yellow_background">pasovu vyrobu</mark>: pracu mohol vykonavať aj nekvalifikovaný robotnik, snažil sa zvyšiť výkon)<ul id="1f10656d-3119-80d5-8de0-dc994bf2495e" class="toggle"><li><details open=""><summary>viac o Forde</summary><p id="1f10656d-3119-80d0-9a11-d236b8269b41" class=""> Rosíril metódy riadenia Fredericka Taylora: nahradil robotníkov strojmi na výrobu ťažkých dielcov a na zdvíhanie a premiestňovanie. Efektivnost ziskanú vďaka<br/>montážnej linke využil na zatraktívnenie práce pre spolonost, aby pracovnici podávali menej vypovedí. Zriadil tiež školiace zariadenia, kde as robotnici mohli naučit hospodárit<br/>s peniazmi. Okrem zlepšenia vzťahov so zamestnancami tieto snahy umožnili, aby sa robotnici spolonosti Ford stali aj jej<br/>zákaznikmi.<br/>💡Jednou z prvých aplikácii pohyblivej montáze bola montážna linka magnetov vo Fordovom závode v Highland Parku. Magnety sa presúvali od jedného pracovníka k druhému, čim sa znížil čas výroby až o polovicu.<br/></p></details></li></ul></li></ul><ul id="1ea0656d-3119-8058-937f-e28a9c56c732" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background"><strong>manželia Gilbrethovi</strong></mark><mark class="highlight-red_background"> </mark>(pohybové štúdia, tiež skumali koľko pohybov robí prácovník a na zaklade toho vymišlali spôsoby zefektivniť procesy)</li></ul><p id="1ea0656d-3119-8069-a1b4-da5a41b534bf" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1ea0656d-3119-80e5-9a0b-f33c5a102b54"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="1ea0656d-3119-8053-9b99-c71bf1e4a070" class=""><em><mark class="highlight-orange_background"><strong>*Zasady vedeckého manažmentu:</strong></mark></em></p><ol type="1" id="1ea0656d-3119-809f-a7ea-db659314c724" class="numbered-list" start="1"><li>sa snažia nahradiť  empiriu vedou=vytvoriť skutočnu vedu o riadení.(=odisť od tradičných metod a spoliahať viac na vedecko spodstatnené. vedenie musi vychadzať z faktov a vedeckej analyzy, nie z dohadov) </li></ol><ol type="1" id="1ea0656d-3119-804c-b9bb-c9c8c558145a" class="numbered-list" start="2"><li>zaoberal (vedecký manažment) vedeckym vyberom a vycvikom pracovnikom, </li></ol><ol type="1" id="1ea0656d-3119-80dc-abde-c32a66625d64" class="numbered-list" start="3"><li>spolupraca  veducich a robotnikov=harmonia v skupine, </li></ol><ol type="1" id="1ea0656d-3119-8062-ae69-cd83cfdfdbb3" class="numbered-list" start="4"><li>pracu a zodpovednosť rozdelil rovnako medzi riadenim a pracovnikamivnujší , systematický subor poznatkov</li></ol><ol type="1" id="1ea0656d-3119-8039-85d6-dff9f8c9be44" class="numbered-list" start="5"><li>jasnejšie definovanie uloh</li></ol><ol type="1" id="1ea0656d-3119-8041-a793-cfe043f4df90" class="numbered-list" start="6"><li>štandartizacia prace(=vytvorenie štandardných pracovných postupov)</li></ol><ol type="1" id="1ea0656d-3119-8044-9430-f1852d1e5be3" class="numbered-list" start="7"><li>transformacia manažmentu na objekti</li></ol><ol type="1" id="1ea0656d-3119-8076-8fac-d23c564ebd67" class="numbered-list" start="8"><li>dôraz na peňažne stimuly pre zamestnancov, ignorovanie socialnych a psychologických faktorov</li></ol><p id="1ea0656d-3119-80ee-9960-f235e4e5ef5d" class="">
+</p><p id="1ea0656d-3119-8053-be15-e83e641d80f4" class=""><em><span style="border-bottom:0.05em solid">Príklad</span></em>: McDonald´s</p></div></figure><p id="1ea0656d-3119-80a6-b121-d9b5eeeaa1ad" class="">
+</p><h3 id="1ea0656d-3119-80a3-8c70-ec45faed86f6" class="">Administrativný manažment</h3><p id="1ea0656d-3119-80b8-b6c9-cfa4e1e4903f" class=""><strong>Prínos</strong>: <mark class="highlight-yellow_background">concept celostného riadenia</mark> podniku</p><p id="1ea0656d-3119-80d7-a26d-c9c5af40fc72" class=""><strong>Dôraz:</strong> efektivita a produktivita pri riadené podnikov a tovární</p><p id="1ea0656d-3119-80af-b6fe-d9126f6bca78" class="">Skumal to, ako vytvoriť organizaciu ktorá vedie k vysokej efektivnosti=zasady <strong>koordinacie vnutornych činnsoti v organizacii</strong></p><p id="1ea0656d-3119-80c5-b4eb-ff3cb372b1f4" class=""><strong>Akcent</strong>- rozvoj manažerskych principov, zlepšiť učinnosť organizacie ako celku, pristup zhora nadol(zhora koordinovať vnutorné činnosti)</p><p id="1ea0656d-3119-80e5-bbdb-d66a43b56056" class=""><strong>Pozornosť</strong>: zohladnena ľudska zložka, obhajuje iniciativu, organizačný duch a td</p><p id="1ea0656d-3119-800b-aa4c-edfaeb6b0dc8" class=""><em><span style="border-bottom:0.05em solid">Predstaviteia:</span></em></p><ul id="1ea0656d-3119-801a-9db4-f25690157608" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background"><strong>Henri Fayol</strong></mark><strong> </strong>(vytvoril koncept riadenia, sa zaoberal rôznymi druhmi činnosti - obchodnymi, technickymi, ochrannymi a td. )<ul id="1ea0656d-3119-80c3-827b-e7625c3f6dc4" class="bulleted-list"><li style="list-style-type:circle">zamer-rozvoj širokych administrativnych principov</li></ul><ul id="1ea0656d-3119-806f-bbcd-c9ef2a63fd64" class="bulleted-list"><li style="list-style-type:circle">makro pohľad=širsie ako dielňa a fyzické vyrobné procesy</li></ul><ul id="1ea0656d-3119-8056-adf4-fe6b61df6acb" class="bulleted-list"><li style="list-style-type:circle"><strong>hlavný prinos</strong>-rozdelenie manažerských úloh do vzajomne zavislych oblasti alebo <strong>funkcii manažmentu</strong></li></ul><ul id="1ea0656d-3119-80c9-89a7-e350efe320c8" class="bulleted-list"><li style="list-style-type:circle">autor 14 principov riadenia: rozdelenie prace, autorita, disciplina, jednota smerovania, jednota riadenia, podriadenie individ zaujmov všeobeckym zaujmom, odmeňovanie, centrlizacia, poriadok, skalarný reťazec(=linia moci od vrcholového man k nižšim), iniciativnoať, podnikový duch, rovnosť</li></ul></li></ul><ul id="1f10656d-3119-80ae-ae18-f270fd58e0f3" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background"><strong>Tomaš Baťa</strong></mark><mark class="highlight-red_background"> (bol bližči k robotnikom, myslel si že aby manažer pochopil pracu zamestnanca-musi som sa zučastniť procesu</mark><mark class="highlight-default_background">)</mark><ul id="1f10656d-3119-803e-b2ca-cc0e8682bfa9" class="toggle"><li><details open=""><summary>viac o Baťovi</summary><p id="1f10656d-3119-80f6-bf53-eb5e4cd7d819" class="">Sa zaoberal komplexným riadením podniku. Bol zástancom <strong>poctivého obchodu</strong> (=podľa ktorého všetky strany zúčastnené na obchode musia byť po obchode bohatšie, ako boli predtym= rozmnoženie majetku nielen pre jedného, ale pre všetkých, ktorí sú na obchode alebo na výrobe zúcastnení.)<br/><br/><em>Citát : </em></p><p id="1f10656d-3119-80dd-b7f2-d4eba07afb59" class="">„Príčinou krízy je morálna bieda. To, čomu sme zvykli<br/>hovoriť hospodárska kríza, je iné meno pre mravnú biedu.<br/>Mravná bieda je pricina, hospodársky úpadok je následok.&quot;<br/>Tomás Bata<br/></p></details></li></ul></li></ul><p id="1ea0656d-3119-8085-a1bc-c3f8b3062b47" class="">
+</p><h3 id="1ea0656d-3119-803a-979a-eddf45d9b9dd" class="">Byrokraticky</h3><p id="1ea0656d-3119-8086-ac77-fb8d36cd56da" class=""><mark class="highlight-red_background"><strong>Max Weber</strong></mark>(otec modernej sociologie)  - vypracovaval zasady byrokracie, sa snažil charakterizoval rôzne <mark class="highlight-yellow_background">typy organizacie:</mark></p><ul id="1ea0656d-3119-80ea-a21a-fc9b9ff0a2c3" class="bulleted-list"><li style="list-style-type:disc">tradična (postupné dedenie)</li></ul><ul id="1ea0656d-3119-8092-994a-ef2f595f3a8b" class="bulleted-list"><li style="list-style-type:disc">vodcovska (vytvorená silou určitej osobnosti, nedochadza k delegovaniu riadiacich funkcii a zamestnanci loyalne služia vodcovi)</li></ul><ul id="1ea0656d-3119-80d6-ad5e-ecbb7512f5cd" class="bulleted-list"><li style="list-style-type:disc">byrokraticka (idealna-delegovanie riadiacich povinnosti na zaklade preukazanýh schopností ), jej Webber venoval najväčšiu pozornosť-mala byť založena na presnych zasadach a pravidlach. <p id="1ea0656d-3119-80e4-9974-eb08153d0821" class=""><em>Byrokraticka organizacia je založena na:</em></p><ul id="1ea0656d-3119-8011-8856-f8bd96855448" class="bulleted-list"><li style="list-style-type:circle">prisna dielba prace (a tvorba prac miest)</li></ul><ul id="1ea0656d-3119-80de-a695-cb5303891cb5" class="bulleted-list"><li style="list-style-type:circle">hyierarchia pravomoci</li></ul><ul id="1ea0656d-3119-807c-a0ca-fcb5d742161f" class="bulleted-list"><li style="list-style-type:circle">vytvaranie pravidiel</li></ul><ul id="1ea0656d-3119-8035-b1e4-dd4c3177f6b0" class="bulleted-list"><li style="list-style-type:circle">formalný vyber pracovnikov</li></ul><ul id="1ea0656d-3119-8081-b9ea-cc1402a98ad5" class="bulleted-list"><li style="list-style-type:circle">formálne pravidla a postupy(ich opisuju pisomné smernice, vedu sa pisomné spisy)</li></ul><ul id="1ea0656d-3119-804f-971f-f6a6b829fce0" class="bulleted-list"><li style="list-style-type:circle">formalna org štr je dôležitá</li></ul><ul id="1ea0656d-3119-8044-a6f1-fca49426101c" class="bulleted-list"><li style="list-style-type:circle">veduce pracovnici-skuseni, musia niečo ovladať na to aby boli veduci</li></ul><ul id="1ea0656d-3119-80bb-8e1d-f409fc369125" class="bulleted-list"><li style="list-style-type:circle">manažeri-profesionaly</li></ul><ul id="1ea0656d-3119-8006-b052-fd6288be2f7c" class="bulleted-list"><li style="list-style-type:circle">neosobnosť (nikto nie je uprednostnovaný)</li></ul><ul id="1ea0656d-3119-80d8-879a-fa2526e87d12" class="bulleted-list"><li style="list-style-type:circle">kariera založena na zásluhách</li></ul></li></ul><p id="1ea0656d-3119-8095-8aff-c7c9f3aa0231" class="">
+</p><p id="1ea0656d-3119-80e9-8f8a-d2a675dd7dca" class="">
+</p><h2 id="1ea0656d-3119-809f-90e6-e845767f30dc" class="">Section 2: Behavioristicka škola</h2><p id="1ea0656d-3119-806c-9432-edaeaef1ac01" class="">— verila,že lepšie pochopenie ľudského správania v prace zvyšuje produktivitu</p><p id="1ea0656d-3119-805c-9779-fca03e4e959e" class="">Pristup k manažmentu viac orientovený na človeka</p><p id="1ea0656d-3119-8084-900e-f89ea55e66cd" class="">Zahrňa:</p><ol type="1" id="1ea0656d-3119-8083-b5d3-e1f195380b2f" class="numbered-list" start="1"><li><mark class="highlight-yellow_background">pristup medziludskych vzťahov </mark>(Human relation approach)</li></ol><p id="1ea0656d-3119-80a5-85bb-c6482265b72e" class="">Predstavitelia:</p><ul id="1ea0656d-3119-8040-ae0a-c4e666e1d2b8" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background">Hugo Munsterberg</mark> (priemiselná psychologia, skumal ako psychologia može pomoct manažmentu: <ol type="a" id="1ea0656d-3119-80e3-883f-e0460ed96349" class="numbered-list" start="1"><li>presne určiť človeka vhodneho na vykon danej prace, </li></ol><ol type="a" id="1ea0656d-3119-809f-8eb4-da7fbaf0b523" class="numbered-list" start="2"><li>može najlepšie identifikovať potrebne podmienky pre danu pracu</li></ol><ol type="a" id="1ea0656d-3119-801d-9e41-ef875a575779" class="numbered-list" start="3"><li>može ovplyvniť spravanie pracovnika (vytvoriť spoločný zaujem zamestnanca s manažerom)</li></ol></li></ul><ul id="1ea0656d-3119-80c1-99f9-f292b4b7a183" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background">Elton Mayo </mark>(skumal vplyv na vykon robotnika rôznych faktorov: osvetlenie, prestavky a td. skumal vzťahy medzi zamestnancami)</li></ul><p id="1ea0656d-3119-80b4-90ad-c45a795ab071" class="">
+</p><ol type="1" id="1ea0656d-3119-8065-9d10-d958668fcec0" class="numbered-list" start="2"><li><mark class="highlight-yellow_background"><strong>Organizačne spravanie</strong></mark> (behavioral science approach)</li></ol><p id="1ea0656d-3119-8027-a0c2-e1feeed0bd4b" class=""><strong>Organizačne spravanie </strong>- vedecky typ behavior.školy, ktory robi vyskumy  a na zakalde ich robí zavery</p><p id="1ea0656d-3119-8062-84cf-f745f409bd57" class=""><em><span style="border-bottom:0.05em solid">Predstavitelia:</span></em></p><ul id="1ea0656d-3119-8085-a842-c4b0cfa03c1d" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background">Douglas McGregor </mark>(teoria X a Y, X=pesimisticky , Y=optimisticky?)</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1ea0656d-3119-80af-ae88-c9d49b4d30b4"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="1ea0656d-3119-808b-a4c0-e2da934dffbb" class=""><strong>Teoria X a Y:<br/><br/></strong>Inak treba viesť človeka ktory chce pracovať, a inak toho ktory chce.<strong><br/>X-pesimisticka teoria: človek X nemá zaujem pracovať , je lenivy, pasivný, pracuje iba pre plat, nie je kreativný.  <br/></strong>Potrebujeme ho kontrolovať, donucovať, dávať stimuli, zvyšovať motiváciu.<strong><br/><br/></strong>Človek Y nsopsk má chuť pracovať, učiť sa azlepšovať svoj výkon. je proaktivný,spoliahlivý, samostatný. Nepotrebujeme ho príliš kontrolovať, môžme naňho spoliehať, delegovať mu pracu. Potrebujeme ho chváliť a facilitovať</p><p id="1ee0656d-3119-80cf-bb58-ceada793222b" class="">
+</p></div></figure><div id="1ea0656d-3119-800c-ba51-c70c3aef6b2b" class="column-list"><div id="1ea0656d-3119-802e-b5e2-dc1672dcbeaa" style="width:50%" class="column"><ul id="1ea0656d-3119-806e-98ca-c5cd7e8ca9fe" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background">Likert </mark>(zaoberal vodcovskymi štylmi, vytvoril Likertovu škalu na meranie kvalitativnych javov)</li></ul></div><div id="1ea0656d-3119-80d0-b3aa-dd06c8f6284e" style="width:50%" class="column"><figure id="1ea0656d-3119-801d-a643-ecb7def28967" class="image"><a href="2%20Historia%20manaz%CC%8Cmentu%201e90656d311980b8a1c5fd47d13a7fa4/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2025-02-20_%D0%BE_23.23.24.png"><img style="width:331.9765625px" src="2%20Historia%20manaz%CC%8Cmentu%201e90656d311980b8a1c5fd47d13a7fa4/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2025-02-20_%D0%BE_23.23.24.png"/></a></figure></div></div><ul id="1ea0656d-3119-805e-a2b7-c260e3797e6d" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background">Abraham Maslow</mark> (potreby musia byť uspokojene od najzakladnejšich po vyššie)</li></ul><ul id="1ea0656d-3119-8022-affc-e61b542e4e83" class="bulleted-list"><li style="list-style-type:disc">George Homans</li></ul><p id="1ea0656d-3119-80f0-ac4d-d51894ecbaf0" class="">
+</p><p id="1ea0656d-3119-8038-8685-f7d50a9a32fb" class="">
+</p><figure id="1ea0656d-3119-8059-b08b-f81645940bd9" class="image"><a href="2%20Historia%20manaz%CC%8Cmentu%201e90656d311980b8a1c5fd47d13a7fa4/IMG_3472.jpeg"><img style="width:2653px" src="2%20Historia%20manaz%CC%8Cmentu%201e90656d311980b8a1c5fd47d13a7fa4/IMG_3472.jpeg"/></a></figure><p id="1ea0656d-3119-80a2-be56-ff1363a67c4a" class="">
+</p><h2 id="1ea0656d-3119-8059-9cbf-d580f1987fe9" class="">Section 3: Kvantitativný pristup</h2><p id="1ea0656d-3119-8056-ada4-c2120185ea5d" class=""><strong>začal sa rojviať po 2 svetovej vojne</strong></p><ul id="1ea0656d-3119-8085-99eb-fdfcefa3c281" class="bulleted-list"><li style="list-style-type:disc">Zahrňa použivanie <strong>kvantitativných technik </strong>(štatistika, informatika) na zlepšenie rozhodovania</li></ul><ul id="1ea0656d-3119-80e6-95af-d1b7ac76f01b" class="bulleted-list"><li style="list-style-type:disc">Poskytuje možnosti ako využiť modely pre rozhodovanie</li></ul><ul id="1ea0656d-3119-8065-9c46-e03bb77aa6e6" class="bulleted-list"><li style="list-style-type:disc">často sa využiva v <span style="border-bottom:0.05em solid">planovacich a kontrolných činnostiach </span>(linearné programovanie, anlyza planovania kritickej cesty, matemat prognozovania, teoria radenia, operačný výskum  a td)</li></ul><p id="1ea0656d-3119-8060-938a-ff3cbefa7207" class=""><em><span style="border-bottom:0.05em solid">Pristupy kvantitativneho manažmentu:</span></em></p><ul id="1ea0656d-3119-806c-8abd-f585dcb5a392" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow_background"><strong>Veda o manažmente </strong></mark>(zamer-vyvoj matematických modelov na zjednodušenu reprezentaciu systemov a ako pomoc pri rozhodovaní)</li></ul><ul id="1ea0656d-3119-8037-9ce1-c2ffda706333" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow_background"><strong>Operačny management</strong></mark>- aku pozornosť treba venovať zakaznikom (čo a kedy chcú). zamer- riadiť proces transformcie materialov,prace a kapitalu  na produkty a služby.<p id="1ea0656d-3119-8030-85b5-e3fe3b9a68c1" class="">Metody:<div class="indented"><ul id="1ea0656d-3119-8069-acc7-e9bd9634d5b3" class="bulleted-list"><li style="list-style-type:disc">Kontrola kvality</li></ul><ul id="1ea0656d-3119-80e6-902d-dff132d89395" class="bulleted-list"><li style="list-style-type:disc">Planovanoe kapacit</li></ul><ul id="1ea0656d-3119-80d3-b8c4-d703a1869fc6" class="bulleted-list"><li style="list-style-type:disc">Meranie  zvyšovania produktivity</li></ul></div></p></li></ul><ul id="1ea0656d-3119-80c8-9d52-e09ae964067d" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow_background"><strong>Manažment informačnych systemov</strong></mark><strong> </strong>(zhromaždenie, ukladanie, spracovanie, vyber udajov a ich prenos)</li></ul><p id="1ea0656d-3119-80ae-a2be-ce932a774d9b" class="">
+</p><p id="1ea0656d-3119-8013-ab47-ca70283f3f97" class=""><em><span style="border-bottom:0.05em solid">Predstavitelia kvantitativneho pristupu:</span></em></p><ul id="1ea0656d-3119-802d-9aec-e001427ddfe4" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background">Hertzberg</mark> (ponukol využitie vypočtovej techniky a rozhodovaní, členil rozhodovanie na programovatelné a neprogram.</li></ul><ul id="1ea0656d-3119-8008-a150-f045e422dcba" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red_background">Fisher </mark></li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1ea0656d-3119-8073-96d1-feac97d646c9"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="1ea0656d-3119-8059-b520-c65c0caeaa94" class=""><strong>Programovatelné</strong>- rutinne, sa opakuju, môžete využiť matematický model<br/><br/><strong>Neprogramovatelné</strong> - nie su štrukturované, musite využiť intuiciu , heuristiske modely</p></div></figure><ul id="1ea0656d-3119-8092-963e-d97c1bb4d69f" class="toggle"><li><details open=""><summary>ďalšie veci</summary><p id="1ea0656d-3119-8010-a084-cc03495d2330" class=""><strong>Operačný vyskum</strong> (ciel-zdokonaľovať rozhodovanie)<div class="indented"><p id="1ea0656d-3119-80d3-9e60-c139d82e86c9" class="">Metody:</p><ul id="1ea0656d-3119-8092-8a07-e63ffbbaefd4" class="bulleted-list"><li style="list-style-type:disc">štrukturná analyza</li></ul><ul id="1ea0656d-3119-80d8-9033-d66ee5b3b16e" class="bulleted-list"><li style="list-style-type:disc">matematicke programovanie</li></ul><ul id="1ea0656d-3119-8027-9386-ea7c5c8d7023" class="bulleted-list"><li style="list-style-type:disc">teoria hier</li></ul><ul id="1ea0656d-3119-803b-802c-e99731a79976" class="bulleted-list"><li style="list-style-type:disc">matematicka štatistika</li></ul><ul id="1ea0656d-3119-80e1-a741-ea8244121670" class="bulleted-list"><li style="list-style-type:disc">sieťové grafy</li></ul><ul id="1ea0656d-3119-8042-ace4-f6ed3c81d1a1" class="bulleted-list"><li style="list-style-type:disc">simulačne metody</li></ul></div></p><p id="1ea0656d-3119-807b-a178-f1660400a786" class="">
+</p><p id="1ea0656d-3119-806a-bc79-df791ff5edb0" class="">V manažmente sú použivané:</p><ul id="1ea0656d-3119-8098-bb37-d9b3da34b38d" class="bulleted-list"><li style="list-style-type:disc">tranzakčné informačné systemy(na jednoduchšiu pracu s datami)</li></ul><ul id="1ea0656d-3119-80c1-9cd6-ca0829d2d338" class="bulleted-list"><li style="list-style-type:disc">manažerské </li></ul><ul id="1ea0656d-3119-80ec-85b7-e605eae77665" class="bulleted-list"><li style="list-style-type:disc">expertné systemy</li></ul><ul id="1ea0656d-3119-803c-9c04-f2c1545589af" class="bulleted-list"><li style="list-style-type:disc">exekutivne (pre vrcholový manažment=zhromažd udaje z  interneho a exter prostredia podniku)</li></ul><p id="1ea0656d-3119-8013-b005-c3e7c0a28562" class="">
+</p><p id="1ea0656d-3119-80b4-94e7-f09205b9e769" class="">kvantitativny pristup Priniesol rozvoj</p><ul id="1ea0656d-3119-80f6-ae95-d4635197e83d" class="bulleted-list"><li style="list-style-type:disc">kybernetiky</li></ul><ul id="1ea0656d-3119-80aa-bccc-d88fe055921e" class="bulleted-list"><li style="list-style-type:disc">všeobecnej teorie systemov</li></ul></details></li></ul><p id="1ea0656d-3119-8008-98af-ec0e93b3dc16" class="">
+</p><p id="1ea0656d-3119-80be-9f2e-d996aa47d6f8" class="">
+</p><h2 id="1ea0656d-3119-804a-8615-c3fafaca1394" class="">Section 4: Systémovy pristup</h2><ul id="1ea0656d-3119-801e-80eb-f5ddcedc146b" class="bulleted-list"><li style="list-style-type:disc">Objevuje v 60 rokoch 20 storočia</li></ul><ul id="1ea0656d-3119-807f-a8dd-feb2982465ac" class="bulleted-list"><li style="list-style-type:disc">možnosť holistickeho pristup na organizaciu</li></ul><ul id="1ea0656d-3119-8013-b7bc-c4b319e045b7" class="bulleted-list"><li style="list-style-type:disc">Zahrňa a integruje ostatné školy- klasicku, behavioristicku, kvantitativný prístup.</li></ul><div id="1ea0656d-3119-80a2-83f7-c0a9f03d5805" class="column-list"><div id="1ea0656d-3119-80be-b59e-c88c446c3796" style="width:50.000000000000014%" class="column"><p id="1ea0656d-3119-809e-8230-db16537e4d08" class=""><br/>Podnik je chapaní ako system, ktorý pozostavá z subsystemov.<br/>Každa zmena v subsystemach-ovplyvnuje vykonnosť celeho systemu<br/><br/></p><p id="1ea0656d-3119-80b5-a0e1-d3330a7be6e4" class="">*Pristup je abstraktný, vníma všetké organizacie rovnako</p></div><div id="1ea0656d-3119-80fc-bab8-d73554e8cfdd" style="width:50%" class="column"><figure id="1ea0656d-3119-80e1-9e93-cb3cdbab6d32" class="image"><a href="2%20Historia%20manaz%CC%8Cmentu%201e90656d311980b8a1c5fd47d13a7fa4/IMG_3475.jpeg"><img style="width:384px" src="2%20Historia%20manaz%CC%8Cmentu%201e90656d311980b8a1c5fd47d13a7fa4/IMG_3475.jpeg"/></a></figure></div></div><h2 id="1ea0656d-3119-8080-a2b4-f8cc3683cd07" class="">Section 5: Kontingenčný  pristup</h2><p id="1ea0656d-3119-80b8-a427-d05fe8c2d2b8" class="">Rozhodovanie podľa situacie</p><p id="1ea0656d-3119-8039-9bb9-f50f906fef96" class="">Prístup je orientovaný na praktickú činnosť, nie je abstraktný. Vníma každu organizaciu individualne s jej podmienkami.</p><p id="1ea0656d-3119-8070-b781-cb81345e60a3" class="">Nadstavba systémového prístupu<br/>Snažil sa prepajať prvky jednotl škôl manažmentu = vytvoriť integrovanu teoriu menežmentu<br/></p><p id="1ea0656d-3119-80a9-a359-e9dc56895180" class=""><em><span style="border-bottom:0.05em solid">Predstavitelia:</span></em></p><p id="1ea0656d-3119-806d-8831-ee424d87ddbf" class="">Paul Lawrence</p><p id="1ea0656d-3119-8044-9872-d1e13dd1d100" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+<a href="/index.html" class="back-to-home">Back to Initial Page</a>
+<script src="securePage.js"></script>
+<script src="/verifyIP.js"></script>
+</body></html>

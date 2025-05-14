@@ -1,0 +1,730 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>5. Rozhodovanie</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+       .back-to-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1ea0656d-3119-806f-a5f3-ef10a3986465" class="page sans"><header><h1 class="page-title">5. Rozhodovanie</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Created</th><td><time>@May 5, 2025 9:22 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><p id="1ec0656d-3119-8057-8ec7-d723b02c24ec" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Rozhodovanie</strong></mark></mark> = riešenie rozhodovacích situácií za účelom výberu najvhodnejšieho variantu z možných riešení</p><p id="1ec0656d-3119-8001-9644-f3e75578dcf6" class="">
+</p><p id="1ec0656d-3119-8013-8ba3-fcfb6949d1c6" class="">PRVKY ROZHODOVACIEHO PROCESU</p><ul id="1ec0656d-3119-80fe-adcb-c80cc178d9b8" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Cieľ rozhodovania </strong></mark></mark></li></ul><ul id="1ec0656d-3119-800c-b12e-c3ad8ac15da8" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Kritériá rozhodovania</strong></mark></mark> (kvantitatívne, kvalitatívne)</li></ul><ul id="1ec0656d-3119-80a7-b22f-e804c45785e7" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Problém rozhodovania</strong></mark></mark> = môže byť <strong>reálny </strong>aj <strong>potenciálny</strong> (napr. zvýšená nespokojnosť zákazníkov, zvýšená fluktuácia zamestnancov)</li></ul><ul id="1ec0656d-3119-8010-8fad-ca17517df9c9" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Subjekt rozhodovania (kto rozhoduje)</strong></mark></mark></li></ul><ul id="1ec0656d-3119-80d1-a3b0-d100fcce37c9" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Objekt rozhodovania   (o kom/čom sa rozhoduje)</strong></mark></mark></li></ul><ul id="1ec0656d-3119-8032-9a20-dbb91adab440" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Varianty rozhodovania, ich dôsledky</strong></mark></mark></li></ul><ul id="1ec0656d-3119-80a3-9332-eaa24ea934bc" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Stavy sveta</strong></mark></mark><mark class="highlight-default"><mark class="highlight-default_background"> (podmienky okolia, napr. dopyt)</mark></mark></li></ul><ul id="1ec0656d-3119-802c-80f5-d8a5b0d404e7" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Metódy rozhodovania</strong></mark></mark></li></ul><ul id="1ec0656d-3119-8057-b734-e09822ab033e" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Fázy rozhodovacieho procesu</strong></mark></mark></li></ul><p id="1ec0656d-3119-803d-891e-e32541817d36" class="">
+</p><h2 id="1ec0656d-3119-80c9-acbc-e095c2f350b0" class="">FÁZY ROZHODOVACIEHO PROCESU</h2><p id="1ec0656d-3119-8044-aa3e-ef5e9ea5951d" class="">
+</p><div id="1ec0656d-3119-8060-be29-d268243c8e83" class="column-list"><div id="1ec0656d-3119-80dd-9929-e1af0126e53d" style="width:100%" class="column"><figure id="1ec0656d-3119-80b7-94b6-e42049ea6e53" class="image"><a href="5%20Rozhodovanie%201ea0656d3119806fa5f3ef10a3986465/5f3e8e43-430f-473d-9fc9-86009b6de344.png"><img style="width:564.3868394815554px" src="5%20Rozhodovanie%201ea0656d3119806fa5f3ef10a3986465/5f3e8e43-430f-473d-9fc9-86009b6de344.png"/></a></figure><p id="1ec0656d-3119-80c2-9309-e3443c904c10" class="">
+</p><p id="1ec0656d-3119-8039-a972-e83c21541986" class="">
+</p></div><div id="1ec0656d-3119-8031-a713-ecd218de4349" style="width:100%" class="column"><ol type="1" id="1ec0656d-3119-80d6-901e-d3ce86ae42be" class="numbered-list" start="1"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Formulovanie problému + určenie cieľa</strong></mark></mark></li></ol><ol type="1" id="1ec0656d-3119-8014-afac-f0818def9775" class="numbered-list" start="2"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Analýza faktorov rozhodovania + určenie kritérií a pravidiel rozhodovania</strong></mark></mark> (faktory interné – výrobné kapacity podniku, externé – legislatíva, čo jeden môže považovať za dôležité, druhý nemusí ani brať do úvahy, určenie presných postupov, ako prísť s správnemu riešeniu)</li></ol><ol type="1" id="1ec0656d-3119-8042-832c-d264380392a2" class="numbered-list" start="3"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Hľadanie a tvorba variantov</strong></mark></mark></li></ol><ol type="1" id="1ec0656d-3119-80d5-a31f-d95ca7c2be9a" class="numbered-list" start="4"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Dôsledky voľby variantov</strong></mark></mark></li></ol><ol type="1" id="1ec0656d-3119-8006-a226-caf952f95d60" class="numbered-list" start="5"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Vyhodnotenie variantov</strong></mark></mark></li></ol><ol type="1" id="1ec0656d-3119-80ef-8ed3-dea17fa9c076" class="numbered-list" start="6"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Prijatie rozhodnutia </strong></mark></mark></li></ol><ol type="1" id="1ec0656d-3119-806d-9980-d5ae8dc35b42" class="numbered-list" start="7"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Konečná formulácia rozhodnutia</strong></mark></mark></li></ol><p id="def8cdde-c7c4-4546-adbc-6a9dbc07de61" class="">
+</p></div></div><h2 id="1ec0656d-3119-803c-91b7-e9b70089f172" class="">TYPOLÓGIA ROZHODOVANIA</h2><p id="1ec0656d-3119-800e-8e55-c3e9e121fce8" class=""><strong><span style="border-bottom:0.05em solid">Aby sa mohol manažér racionálne rozhodovať, musí mať info o 3 základných prvkoch modelu rozhodovacej matice:</span></strong></p><ol type="1" id="1ec0656d-3119-8009-a530-fe7ecef02478" class="numbered-list" start="1"><li><mark class="highlight-yellow"><strong>Varianty</strong></mark> (alternatívy)</li></ol><ol type="1" id="1ec0656d-3119-80b5-9ad4-cefe85ef13e0" class="numbered-list" start="2"><li><mark class="highlight-yellow"><strong>Stavy sveta</strong></mark> (podmienky)</li></ol><ol type="1" id="1ec0656d-3119-801a-a27f-f82d10a7470d" class="numbered-list" start="3"><li><mark class="highlight-yellow"><strong>Dôsledky</strong></mark> (efektívnosť pri jednotlivých stavoch sveta) </li></ol><p id="1ec0656d-3119-8070-90c1-f2fac980d4eb" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1ec0656d-3119-80ae-9cc2-fe075842ddad"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="1ec0656d-3119-8043-af9d-fe39b1b3b4a8" class="">Podľa čoho možeme typyzovať rozhodovanie?(z akých hľadisk):<br/><br/></p><ul id="1ec0656d-3119-80c3-993b-d18b31364157" class="bulleted-list"><li style="list-style-type:disc"> z hľadiska <mark class="highlight-yellow_background">informovanosti subjektu rozhodovania</mark> (1. v podmienkach istoty, 2. podmienkach rizika a 3. podmienkach neistoty)</li></ul><ul id="1ec0656d-3119-802d-80ea-e20090dbfd1e" class="bulleted-list"><li style="list-style-type:disc"> z hľ. <mark class="highlight-yellow_background">závažnosti a časového rozpätia</mark> medzi prijatím a realizaciou rozhodnutia (strategické, taktické, operatívne)</li></ul><ul id="1ec0656d-3119-80f2-b387-dcf401e7774b" class="bulleted-list"><li style="list-style-type:disc"> z hľ. <mark class="highlight-yellow_background">možnosti algoritmizácie</mark>(=programované a neprogramované)</li></ul><ul id="1ec0656d-3119-8013-863f-d8d675e160f9" class="bulleted-list"><li style="list-style-type:disc"> <mark class="highlight-yellow_background">počtu kriterií</mark> (jednokriterialné a multikriteriálne)</li></ul><ul id="1ec0656d-3119-806f-84b8-d4ea1b431f6e" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow_background">počtu rozhodov.subjektov</mark>(=osôb ktorí rozhodujú: kolektivné a individualné)</li></ul></div></figure><p id="1ec0656d-3119-8069-a5d8-fac19da3ce89" class="">
+</p><p id="1ec0656d-3119-804c-915e-d8c6037cc013" class=""><span style="border-bottom:0.05em solid">Podľa informovanosti subjektu</span>:</p><ul id="1ec0656d-3119-80c4-bd00-f99c5fac31b8" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Podmienky istoty</strong></mark></mark> = poznáme: všetky tri (aj varianty, aj ich dôsledky, aj stavy sveta), bezprostredné rozhodovanie <em>(napr. kúpa auta – viem varianty, kritériá, dôsledky)</em></li></ul><ul id="1ec0656d-3119-8044-816e-f3d0109a0097" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Podmienky rizika</strong></mark></mark> = najčastejšie, poznáme varianty, stavy sveta len odhadujeme, poznáme pravdepodobnosť <em>(napr. v poľnohospodárstve). Priklad: umiestnenie pobôčky McDonald&#x27;s v novej likalite , (vieme konkurenciu, logistiky dodavok, potencialných zákazníkov v lokalite, ale dopyt zase =pravdepodobnosť)</em></li></ul><ul id="1ec0656d-3119-8059-8e99-c546c3bd6198" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Podmienky neistoty</strong></mark></mark> = <span style="border-bottom:0.05em solid">poznáme</span>: všetky 3, nepoznáme pravdepodobnosť výskytu stavu sveta, <span style="border-bottom:0.05em solid">čo môžeme spraviť</span>: zmena na situáciu v podmienok rizika <em>(napr. subjektívne určenie pravdepodobnosti expertmi)</em>/využitie metódy, ktorá nevyžaduje poznanie pravdepodobnosti stavov okolia <em>(napr. pravidlo dominancie(=vyberame ten veriant, ktorý pri každom stave sveta nam sľubuje najlepší výsledok), Laplaceovo kriterium (popis čitaj dole)</em></li></ul><p id="1ec0656d-3119-80c0-a3c0-c769c1dc7b9a" class="">
+</p><h3 id="1ec0656d-3119-807a-b447-ebe652f7f934" class="">Typy rozhodnutí podľa <mark class="highlight-yellow_background">závažnosti</mark></h3><p id="1ec0656d-3119-80a5-88d2-f90ed3faccfc" class=""><mark class="highlight-yellow_background"><strong>Strategické</strong></mark><mark class="highlight-yellow_background"> </mark>(napr. odkúpenie ďalšej spoločnosti, rozšírenie výroby),</p><p id="1ec0656d-3119-8079-b7ae-ec0aa15b9917" class=""><mark class="highlight-yellow_background"><strong>taktické</strong></mark>- na podporu strategických (napr. procesy odchodu, marketingu),</p><p id="1ec0656d-3119-800b-8e69-f8d40cfd1ca2" class=""><mark class="highlight-yellow_background"><strong>operatívne</strong></mark> - denné rozhodovania s veľkým stupňom opakovania, nižší stupeň riadenia (napr. nákup tovaru)</p><p id="1ec0656d-3119-803f-87a1-c8ff89ca6830" class="">
+</p><h3 id="1ec0656d-3119-80ea-b6ce-f79e08e22796" class="">Typy rozhodnutí podľa <mark class="highlight-yellow_background">počtu kreterií</mark></h3><p id="1ec0656d-3119-8054-b805-dae055b9d693" class="">Jednokriteriálne= jeden kríterij</p><p id="1ec0656d-3119-803b-8a08-e9e54a8bdad6" class="">Multikriteriálne- viac</p><p id="1ec0656d-3119-800e-9cf4-fa83a79b9fdd" class="">
+</p><h3 id="1ec0656d-3119-8091-a379-c3766624e618" class="">Typy rozhodovania podľa možnosti <mark class="highlight-yellow_background">algoritmizacie</mark>(=možnosti vyriešenia pomocou určitých algoritmov a postupov)</h3><ol type="1" id="1ec0656d-3119-80e0-9a87-d1bae59c1eff" class="numbered-list" start="1"><li><mark class="highlight-blue_background"><strong>Programované</strong></mark> (dobre štruktúrované, často sa vyskytujú, jednoznačný postup riešenia, dá sa použiť vypočtovu techniku.). Príklad: výber prepravných tras pre dodávky výrobkov, planovanie letov</li></ol><ol type="1" id="1ec0656d-3119-807f-879f-c44007475d7c" class="numbered-list" start="2"><li><mark class="highlight-blue_background"><strong>Neprogramované</strong></mark> (zle štruktúrované, nový problém, vuyživame empiricko-intuitívne metódy). Príklad: vývoj nového produktu, vstup na nový trh</li></ol><p id="1ec0656d-3119-80e7-9bad-e50d11169879" class="">
+</p><p id="1ec0656d-3119-8038-a988-c59fc3f4c310" class="">
+</p><p id="1ec0656d-3119-8004-ace8-e5715ad417ab" class="">
+</p><ul id="1ec0656d-3119-80db-af39-d3930110cde2" class="toggle"><li><details open=""><summary><em><strong>Metódy rozhodovania v podmienkach neistoty</strong></em></summary><p id="1ec0656d-3119-8015-90ae-fa1cfc73628e" class=""><em>Laplaceovo kriterium- </em>Predpokladá sa, že <strong>všetky možné stavy sveta sú rovnako pravdepodobné</strong>. Preto sa vypočíta <strong>priemerný výnos každej alternatívy</strong> a vyberie sa tá s <strong>najvyššou priemernou hodnotou</strong>.<br/><br/></p><p id="1ec0656d-3119-80fb-9f44-f88dd2b2de89" class="">Hurwiczovo pravidlo</p><p id="1ec0656d-3119-8031-ba0c-fee2e940c041" class="">Zohľadňuje sa <strong>mieru optimizmu</strong> rozhodovateľa. Používa sa parameter <strong>α (alfa)</strong>:</p><ul id="1ec0656d-3119-8067-b84c-edf0a7b6b0d4" class="bulleted-list"><li style="list-style-type:disc">ak α = 1 → úplný optimista,</li></ul><ul id="1ec0656d-3119-8027-b68c-f0e6d064242d" class="bulleted-list"><li style="list-style-type:disc">ak α = 0 → úplný pesimista.</li></ul><ul id="1ec0656d-3119-800e-8042-c0ca1efac78c" class="bulleted-list"><li style="list-style-type:disc"><br/>📊 Príklad:<br/></li></ul><p id="1ec0656d-3119-8016-9c9b-d489ffba73de" class="">Alternatíva A má výnosy: 100, 200, 300</p><p id="1ec0656d-3119-806e-986d-cf0cf628c1ba" class="">Alternatíva B má výnosy: 150, 150, 150</p><p id="1ec0656d-3119-809d-bf6d-eb113c433d8a" class="">Zvoľme α = 0.6 (60 % optimizmus):</p><ul id="1ec0656d-3119-8068-b407-c29faebcc259" class="bulleted-list"><li style="list-style-type:disc">A: 0.6 × 300 + 0.4 × 100 = 180 + 40 = <strong>220</strong></li></ul><ul id="1ec0656d-3119-8013-aa7b-df53c444359e" class="bulleted-list"><li style="list-style-type:disc">B: 0.6 × 150 + 0.4 × 150 = <strong>150</strong></li></ul><p id="1ec0656d-3119-806a-9dd6-fb0efe5204c9" class="">➡ Vyhráva opäť <strong>alternatíva A</strong></p><p id="1ec0656d-3119-80ea-88c2-cc59d206c450" class="">
+</p><h3 id="1ec0656d-3119-8086-85d5-d58aac6424ba" class=""><strong>Savageovo kritérium</strong> (kritérium minimálnej ľútosti / minimax regret)</h3><p id="1ec0656d-3119-80ce-b3b4-ef61edc644cd" class="">= vyberame to za čo budeme ľutovať najmenej=kde stratime najmenej</p><p id="1ec0656d-3119-805f-835a-d2ab0935571c" class="">Vyberá sa alternatíva s <strong>najmenšou maximálnou stratou (ľútosťou)</strong></p></details></li></ul><p id="1ec0656d-3119-8072-bb9a-fe48799dd09a" class="">
+</p><p id="1ec0656d-3119-80fd-a7e0-f43ef9911540" class="">
+</p><h2 id="1ec0656d-3119-8093-9c7c-f5fa63e4a965" class="">PRINCÍPY ROZHODOVANIA</h2><ol type="1" id="1ec0656d-3119-80f1-8f11-c9661230bbf1" class="numbered-list" start="1"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Princíp maximalizácie</strong></mark></mark> = najlepšie riešenie </li></ol><ol type="1" id="1ec0656d-3119-80d4-969a-dbd102da9a3d" class="numbered-list" start="2"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Princíp satisfakcie</strong></mark></mark> = uspokojivé</li></ol><ol type="1" id="1ec0656d-3119-809a-85d8-c0f277a7dfed" class="numbered-list" start="3"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Princíp optimalizácie</strong></mark></mark> = využitie výpočtovej techniky </li></ol><ol type="1" id="1ec0656d-3119-80c1-a2be-d3f1fef12b96" class="numbered-list" start="4"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Princíp dominancie</strong></mark></mark> = pri rozhodovacích maticiach (rôzne varianty riešenia, dominantné riešenie vykazuje pri všetkých stavoch sveta najlepšie/porovnateľné riešenie)</li></ol><p id="1ec0656d-3119-80d5-b15d-d252d32ffdc1" class="">
+</p><h2 id="1ec0656d-3119-80b6-bae5-dc76415fa23d" class="">BARIÉRY ROZHODOVANIA</h2><p id="1ec0656d-3119-803a-975c-f4f78414d59d" class=""><span style="border-bottom:0.05em solid">Strana:</span> </p><ul id="1ec0656d-3119-80f1-bb5c-dfc71bfc91d6" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Subjektu rozhodovania</strong></mark></mark> <em>(napr. ohraničený rozsah poznatkov, nevie riešiť niektoré problémy)</em></li></ul><ul id="1ec0656d-3119-80c4-a47d-ce565054908f" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Riadeného objektu </strong></mark></mark><em>(napr. slabá kvalita informácií, veľa stupňov riadenia)</em></li></ul><ul id="1ec0656d-3119-8007-b99b-cf8ecf07f704" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Okolie podnikateľského subjektu</strong></mark></mark> <em>(napr. legislatíva)</em></li></ul><p id="1ec0656d-3119-80b1-a32f-e45d9f0e065c" class="">
+</p><p id="1ec0656d-3119-8043-9939-d3be2503b15c" class="">
+</p><h2 id="1ec0656d-3119-804b-a64d-ddbb08cf8b2c" class="">METÓDY ROZHODOVANIA</h2><ul id="1ec0656d-3119-8042-a8d4-f0dfb1f2c960" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Empirické </strong></mark></mark><ul id="1ec0656d-3119-806b-be36-ff39e9f48e16" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Empiricko-intuitívne</strong></mark> (intuícia + skúsenosť rozhodovacieho subjektu)</li></ul><ul id="1ec0656d-3119-8054-a8d0-e8ff8de9f6f0" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Empiricko-analytické</strong></mark> (skúsenosť + cieľavedomo spracované info)</li></ul><ul id="1ec0656d-3119-802e-8be8-d008b1b8de7e" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Expertné</strong></mark> - subjektívne ale kvalifikované názory (prognózy, delfská metóda, brainstorming). Napr. pre formulovanie stratégie podniku(prognózy)</li></ul></li></ul><ul id="1ec0656d-3119-8054-ab05-e57bbe2f601f" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Exaktné </strong></mark></mark><p id="1ec0656d-3119-804f-8b3c-f2f562f39a9f" class="">= modelovanie pomocou matematiky</p><ul id="1ec0656d-3119-809b-8aa4-c1efbb85d6a5" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Ekonomicko-štatistické</strong></mark><mark class="highlight-yellow"> </mark><mark class="highlight-default">(regresná analyza, teoria pravdepodobnosti)</mark></li></ul><ul id="1ec0656d-3119-80f9-8ff3-e3fd52a26bb2" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Operačnej analýzy</strong></mark><mark class="highlight-yellow"> </mark>(pri dobre štruktúrovaných problémoch, teória hier, štruktúrna analýza)</li></ul></li></ul><ul id="1ec0656d-3119-8076-a277-ea8bf6ddba2b" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Heuristické</strong></mark></mark> (prienik medzi empickým a exaktným, vychádzajú z poznatkov z všeobecnej teórie, modelov + využitie skúsenosti a tvorivosti manažéra) <ul id="1ec0656d-3119-80ee-a9bf-f50558d1ea35" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Rozhodovacie tabuľky</strong></mark></li></ul><ul id="1ec0656d-3119-8051-853e-fd63e0f9b42a" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Rozhodovací strom</strong></mark></li></ul><ul id="1ec0656d-3119-8016-8cab-e7fcbbb4392b" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Rozhodovacie analýzy</strong></mark></li></ul></li></ul><p id="1ee0656d-3119-8055-8324-e6484cffa450" class="">
+</p><ul id="1ee0656d-3119-80a9-9607-c26b657d0715" class="toggle"><li><details open=""><summary><em><strong>Opis metód</strong></em></summary><p id="1ee0656d-3119-8020-92f7-e32f93b39e36" class="">Delfská analyza- <br/><br/>Brainstorming- <br/></p></details></li></ul><p id="1ee0656d-3119-80ef-b17e-dc466643071a" class="">
+</p><h2 id="1ec0656d-3119-8062-bd38-d1d5ca5650f2" class="">ROZHODOVACIE ŠTÝLY MANAŽÉRA</h2><ul id="1ec0656d-3119-80f8-a056-fd5ce61ae9cb" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Direktívny</strong></mark></mark> = <mark class="highlight-teal"><mark class="highlight-default_background"><strong>racionálny</strong></mark></mark> spôsob rozhodovania, <span style="border-bottom:0.05em solid">nízka</span> tolerancia k nejednoznačnosti (manažéri = krátkodobo zameraní, rozhodovanie podľa určitých princípov, snažia sa o účinnosť, rýchlosť, nevýhody: môžu prehliadať alternatívne riešenia, málo informácií)</li></ul><ul id="1ec0656d-3119-8016-b166-c84112130c8c" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Analytický </strong></mark></mark>= <mark class="highlight-teal"><strong>racionálny</strong></mark> spôsob rozhodovania, <span style="border-bottom:0.05em solid">vyššia</span> tolerancia k nejednoznačnosti (lepšie zvládanie situácií)</li></ul><ul id="1ec0656d-3119-8085-a698-ea84cfee0bd3" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Behaviorálny</strong></mark></mark> = <mark class="highlight-pink"><strong>intuitívny</strong></mark> spôsob rozhodovanie, <span style="border-bottom:0.05em solid">nízka</span> tolerancia k nejednoznačnosti (využitie jednoznačných info + svojich skúseností, zapájanie podriadených do procesov)</li></ul><ul id="1ec0656d-3119-804f-9083-d306ae1319ab" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Koncepčný</strong></mark></mark> = <mark class="highlight-pink"><strong>intuitívny</strong></mark> spôsob rozhodovania, <span style="border-bottom:0.05em solid">vyššia</span> tolerancia k nejednoznačnosti (širší rozhľad, dokážu spracovávať viac myšlienok naraz, zameranie na dlhé obdobie)</li></ul><p id="1ec0656d-3119-809f-967d-ec0ed1f2652a" class="">
+</p><p id="1ec0656d-3119-8006-a189-d72313aa260e" class="">
+</p><h2 id="1ec0656d-3119-8095-9d0b-f097400b59f5" class="">TYPY MANAŽÉROV</h2><ul id="1ec0656d-3119-8034-8bcc-c0802aa65638" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Vyhýbači</strong></mark></mark> (ignorácia informácií, pasivita, uprednostňujú neriešenie problémov)</li></ul><ul id="1ec0656d-3119-80c3-ba8f-fecad682e703" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Riešitelia</strong></mark></mark> (reaktívni, riešia problémy keď sa vyskytnú, nie skôr)</li></ul><ul id="1ec0656d-3119-806f-a2d7-ed21024e863a" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Vyhľadávači</strong></mark></mark> (vyhľadávajú problémy potrebné riešiť, príležitosti, proaktívni, myslia dopredu)</li></ul><p id="1ec0656d-3119-80e3-a034-eaa230983f58" class="">
+</p><p id="1ec0656d-3119-8012-a9e0-d5efbcc93591" class="">
+</p><h3 id="1ec0656d-3119-80f0-bd6c-f6d16278c9f5" class="">Predpoklady rozhodovania</h3><ul id="1ec0656d-3119-8047-9de2-f26c24526475" class="bulleted-list"><li style="list-style-type:disc">existencia aspoň 2 zmyslupných variantov riešenia</li></ul><ul id="1ec0656d-3119-80f1-b084-dda0867014b0" class="bulleted-list"><li style="list-style-type:disc">existencia primeraných informácií</li></ul><ul id="1ec0656d-3119-803a-a796-e3d5c2878d72" class="bulleted-list"><li style="list-style-type:disc">odhylka skutočnej situacie od požadovanéhonstavu (= že sa nezhoduje skutočné a požadované)</li></ul><p id="1ec0656d-3119-8085-a35c-ce169e2c3d5f" class="">
+</p><p id="1ec0656d-3119-80cc-8e3e-dd9ee87b4d7b" class="">
+</p><h3 id="1ec0656d-3119-80a8-b3fa-d1c3113ee172" class="">Princíp SMART pre tvorbu cieľov</h3><ul id="1ec0656d-3119-8016-a680-c3963ba5f54a" class="bulleted-list"><li style="list-style-type:disc">znamená, že cieľ musí byť kontretný(=Specific), merateľný (=Measurable), dosiahnuteľný (=Achievable), relevantvý (=Relevant)</li></ul><p id="1ec0656d-3119-8000-8c47-f037a978785b" class="">
+</p><p id="1ec0656d-3119-8082-a198-de084cfa973f" class=""><strong><span style="border-bottom:0.05em solid">Nesprávne rozhodnutia</span></strong><span style="border-bottom:0.05em solid"> = chyby v 2 oblastiach</span>: </p><ul id="1ec0656d-3119-80ca-a415-d22e307e1a06" class="bulleted-list"><li style="list-style-type:disc"><strong>Chybné kroky v rámci rozhodovacieho procesu</strong> (nesprávne vymedzenie problému, stanovenie cieľa, nejasná definícia variant, nedostatočné info, nesprávne vyhodnotenie strát a prínosov, nesprávne metódy)</li></ul><ul id="1ec0656d-3119-802f-97e2-ccda53f40c24" class="bulleted-list"><li style="list-style-type:disc"><strong>Chyby v mysli manažéra</strong> (citlivosť, opatrnosť, sebaistosť, skreslenia, predsudky, zaujatosť)</li></ul><p id="1ec0656d-3119-8041-9da4-fdaeabbc479d" class="">
+</p><p id="1ec0656d-3119-804d-b6cb-d8ac9c20917e" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+<a href="/index.html" class="back-to-home">Back to Initial Page</a>
+<script src="securePage.js"></script>
+<script src="/verifyIP.js"></script>
+</body></html>

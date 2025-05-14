@@ -1,0 +1,729 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>9.   Riadenie ľudských zdrojov</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+       .back-to-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1ec0656d-3119-802d-acc5-e7c492a349f8" class="page sans"><header><h1 class="page-title">9.   Riadenie ľudských zdrojov</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Created</th><td><time>@May 7, 2025 10:50 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><h1 id="1ec0656d-3119-80b5-a595-c094bb151cf0" class="">RIADENIE ĽUDSKÝCH ZDROJOV</h1><blockquote id="1ec0656d-3119-80e7-8539-edb4809e9e74" class=""><strong>Týka sa všetkých aktivít zahŕňajúcich človeka v súvislosti s pracovným procesom</strong></blockquote><p id="1ec0656d-3119-80c2-ab9a-ef4f779e62b4" class=""><strong><span style="border-bottom:0.05em solid">1878</span></strong> – regulácia pracovnej doby, podmienok, skrátená pracovná doba na 60h/týždeň</p><p id="1ec0656d-3119-80a3-b51c-ec6e8f47095e" class="">
+</p><h2 id="1ec0656d-3119-80e8-b569-df95efe4ae9f" class="">VÝVOJOVÉ ETAPY</h2><ol type="1" id="1ec0656d-3119-806d-bfc7-d9bef2fe0b8d" class="numbered-list" start="1"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Personálna administratíva</strong></mark></mark>: (bez riadiacej kompetencie)</li></ol><ul id="1ec0656d-3119-80a0-bf76-e923e7f0590f" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Starostlivosť o zamestnancov</strong></mark> (1915-30) = regulácia pracovných podmienok, času</li></ul><ul id="1ec0656d-3119-8061-b16c-d0c3d920d9a6" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Personálna administratíva</strong></mark> (1930-40) = výcvik, evidencia, administratíva</li></ul><p id="1ec0656d-3119-80c0-b710-d11fcd648ad4" class="">
+</p><ol type="1" id="1ec0656d-3119-806b-b5d3-f4fcf3a74448" class="numbered-list" start="2"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Personálny manažment</strong></mark></mark><mark class="highlight-default"><mark class="highlight-default_background">: </mark></mark>rozvoj pred 2. sv. vojnou, majú rozhodovaciu právomoc, nie len pasívnu úlohu, vznik špecializovaných útvarov (napr. oblasť odmeňovania, plánovania ľ.z., kolektívneho vyjednávania)</li></ol><ul id="1ec0656d-3119-806d-b3d2-f653dab8383c" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Fáza rozvoja</strong></mark> (1940-60) = odborný výcvik, majstrov</li></ul><ul id="1ec0656d-3119-8099-adbb-c34dd086e963" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Fáza zrelosti</strong></mark> (1960-80) = plánovanie, systematické vzdelávanie, odmeňovanie </li></ul><p id="1ec0656d-3119-80fc-92a7-e46b23513730" class="">
+</p><ol type="1" id="1ec0656d-3119-809e-9a22-f7e07571a708" class="numbered-list" start="3"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Manažment ľudských zdrojov</strong></mark></mark> (1980) = vznikol z potreby nadnárodných spoločností, Amerika, orientácia na dosahovanie strategických cieľov podniku, zamestnanecká spokojnosť, ľudia sa považujú za kľúčový faktor úspechu a najcennejší zdroj, zapojil manažérov všetkých úrovní do riadenia ľudí</li></ol><p id="1ec0656d-3119-8065-85e1-dc01004fead6" class="">
+</p><p id="1ec0656d-3119-800e-957b-dbac62c139fd" class="">
+</p><h2 id="1ec0656d-3119-8085-a11d-d33890065bac" class="">CIELE</h2><blockquote id="1ec0656d-3119-8021-a52a-f3a3b088c71b" class=""><strong>Aby podnik mal potrebný počet zamestnancov na jednotlivé profesie, pri požadovanej kvalifikačnej úrovni, v súlade so svojimi strategickými cieľmi</strong></blockquote><p id="1ec0656d-3119-80e7-96b0-d90c359c11c0" class="">
+</p><ol type="1" id="1ec0656d-3119-8038-99af-f007fa0936bc" class="numbered-list" start="1"><li><strong>Všeobecné</strong> = <mark class="highlight-yellow"><strong>získať, motivovať, rozvíjať, udržať</strong></mark></li></ol><ol type="1" id="1ec0656d-3119-80a2-847e-eea7eb8738a8" class="numbered-list" start="2"><li><strong>Špecifické</strong> = <mark class="highlight-yellow"><strong>produktivita práce, spokojnosť s prácou, kvalita pracovného života/work-life balance, zvyšovanie právneho povedomia </strong></mark><mark class="highlight-default">(aby človek poznal, čo môže/na čo má nárok)</mark></li></ol><ol type="1" id="1ec0656d-3119-8047-8fd5-f50abfc718e0" class="numbered-list" start="3"><li><strong>Ekonomické</strong> = optimálne využívanie ľudských zdrojov, zabezpečenie kvality, efektivity</li></ol><ol type="1" id="1ec0656d-3119-8050-b1d3-f54fbf0949cb" class="numbered-list" start="4"><li><strong>Sociálne</strong> = vytváranie podmienok sebarozvoja, identifikácia s podnikom</li></ol><p id="1ec0656d-3119-80ab-a414-ecfa48bb1a47" class="">
+</p><h2 id="1ec0656d-3119-80bf-9a3c-cf5723cb1034" class="">SUBJEKTY </h2><p id="1ec0656d-3119-8003-8049-c5a8d5552644" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Vrcholové vedenie</strong></mark></mark> = na ktoré oblasti sa bude riadenie ľudských zdrojov zameriavať, personálna stratégia podniku</p><p id="1ec0656d-3119-8048-bab0-d872407714a8" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Personalisti</strong></mark></mark> = vytváranie postupov, jednotného rámca pre riadenie ľudí,  spracovanie a vyhodnotenie dát, vedenie evidencie, poradenstvo (psychologická, právna oblasť), zabezpečenie školení</p><p id="1ec0656d-3119-8012-976f-e3873c90e4c1" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Línioví manažéri</strong></mark></mark> = vykonávatelia riadenia</p><p id="1ec0656d-3119-8067-b805-f73bb6d07320" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Odborové organizácie</strong></mark></mark> = zastupovanie záujmov zamestnancov, kolektívne vyjednávanie</p><p id="1ec0656d-3119-80a0-81d7-c39bbf602e24" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Externé poradenské spoločnosti </strong></mark></mark></p><p id="1ec0656d-3119-80f2-aad9-ef70a93852b5" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Samotní zamestnanci</strong></mark></mark><mark class="highlight-default"><mark class="highlight-default_background"> = napr. výber kariérnej dráhy, školení, dovolenky</mark></mark></p><p id="1ec0656d-3119-80d9-8e5e-ca587312f23d" class="">
+</p><p id="1ec0656d-3119-800b-9bf2-d927916569d2" class=""><strong>Značka zamestnavateľa=subor charakteristik a kvalit,ktoré podporujú pozitívnu predstavu o zamestnavateľovi v očach zamestnancov/potencialných</strong></p><p id="1ec0656d-3119-8008-8cb4-e0138cb57244" class="">
+</p><p id="1ec0656d-3119-8050-ab53-d6bea8b91456" class="">
+</p><p id="1ec0656d-3119-8099-b31b-f634ee32fe58" class="">
+</p><h2 id="1ec0656d-3119-80bd-b2e0-cce9a2eadc63" class="">PERSONÁLNE FUNKCIE</h2><blockquote id="1ec0656d-3119-80af-a0fd-e8aa51f0fc94" class=""><strong>Jednotlivé činnosti, ktoré treba zabezpečiť na dosiahnutie cieľov</strong></blockquote><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1ec0656d-3119-80a4-93f3-fdc3bc6f30ca"><div style="font-size:1.5em"><span class="icon">👇🏼</span></div><div style="width:100%"><p id="1ec0656d-3119-80c4-abbf-c23db1654ea2" class=""><strong>ZHRNUTIE =  str. 368-370 (tabuľka)</strong></p></div></figure><p id="1ec0656d-3119-803a-aada-e007e97c9963" class="">
+</p><ol type="1" id="1ec0656d-3119-806e-b000-d06d911cfec5" class="numbered-list" start="1"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Analýza pracovného miesta </strong></mark></mark>(opis práce + špecifikácia požiadaviek)</li></ol><figure id="1ec0656d-3119-80c0-b66a-eca50087c49a" class="image" style="text-align:left"><a href="9%20Riadenie%20l%CC%8Cudsky%CC%81ch%20zdrojov%201ec0656d3119802dacc5e7c492a349f8/d1206940-c667-4291-b5a1-a5962599ac9e.png"><img style="width:480px" src="9%20Riadenie%20l%CC%8Cudsky%CC%81ch%20zdrojov%201ec0656d3119802dacc5e7c492a349f8/d1206940-c667-4291-b5a1-a5962599ac9e.png"/></a></figure><p id="1ec0656d-3119-8026-8d97-ff27976c20fb" class="">
+</p><ol type="1" id="1ec0656d-3119-80c5-8d12-faee7fa2383e" class="numbered-list" start="2"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Personálne plánovanie</strong></mark></mark> (potreby pracovníkov + zdroje pokrytia, rozpracovanie personálneho plánu – pracovná sila na trhu práce vs. súčasní zamestnanci, zostavenie bilancie ľudských zdrojov = budúce potreby vs. vlastné zdroje, ak potreba = začiatok procesu získavania z trhu práce) </li></ol><p id="1ec0656d-3119-80e2-b802-d8695b0add7e" class=""><strong>Kvalitatívna, kvantitatívna, časová, miestna dimenzia</strong></p><p id="1ec0656d-3119-8036-a846-f4e06db9578c" class="">Sa uskutočnuje zo 4 dimenzie: Kvalitatívna (na akú poziciu hľadame), kvantitatívna (koľko), časová (kedy ich potrebujeme), miestna (kde, na ktorom útvare)</p><p id="1ec0656d-3119-8048-b147-f57963e2a3c3" class="">*Okrem “Koho?koľko?kde?kedy?”, predpokladá personálne planovanie plan získavania zamest., plan adaptacie, plan vzdelavania a td.</p><ul id="1ec0656d-3119-807a-8ee2-e771d3141834" class="toggle"><li><details open=""><summary>bilancia ľud.zdr</summary><h2 id="1ec0656d-3119-80d9-88c2-fd8bc35945f3" class="">Bilancia ľudských zdrojov</h2><p id="1ec0656d-3119-80ee-81a1-e43c980763c6" class="">=bilancia medzi potrebou zamestnancov v buducnosti a budúcimy kapacitami firmy</p><ul id="1ec0656d-3119-80d4-abc4-ce930ea41857" class="bulleted-list"><li style="list-style-type:disc">budúce potreby. analyzujeme do budúcna: stav prac.miest, počet novozvniknutych a zrušených prac.miest</li></ul><ul id="1ec0656d-3119-80d7-be40-d750559e6af6" class="bulleted-list"><li style="list-style-type:disc">*budúce disponibilne zdroje: budúci stav zamestnancov, navraty z materskej, odchody na dôchodok a matersku, nastup učňov, predpokladana fluktuacia,predpokl.práceschopnosť a tď</li></ul></details></li></ul><p id="1ec0656d-3119-8058-977c-fe2b9270c623" class="">
+</p><ol type="1" id="1ec0656d-3119-80df-924d-ceec2a6ed43d" class="numbered-list" start="3"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Získavanie, výber, prijímanie</strong></mark></mark> (osloviť potencionálnych uchádzačov, vyvolať záujem, vybrať, vnútorné + externé zdroje, nábor), snaha budovať <strong>atraktívny employer brand</strong></li></ol><p id="1ec0656d-3119-8039-bd6f-cb9b9be139c2" class=""><em>Etapy získavania zametsnancov:</em><div class="indented"><ol type="1" id="1ec0656d-3119-8021-a2ce-f0689770dda2" class="numbered-list" start="1"><li>Identifikacia potreby a definovanie cieľovej skupiny (dostali požiadavku z utvaru podniku--&gt;zvažili si alternativy(zručenie prac miesta, rozdelenie prac medzi iné pracovné miesta)--&gt;rozhodli že potrebujeme nového pracovnika--&gt;formujeme požiadavky ktoré musí splňať)</li></ol><ol type="1" id="1ec0656d-3119-8044-93ba-e103b18aa866" class="numbered-list" start="2"><li>Vyber zdrojov zamestnancov (interné=ponukneme už existujucím, alebo externé= ziskáme uplne nových)</li></ol><ol type="1" id="1ec0656d-3119-8001-b48f-de241a2a988e" class="numbered-list" start="3"><li>Voľba metód ziskavania zamestnancov (inzercia v mediach/internetové získavanie/odporučania vlasných zamestnancov/spolupraca so vzdelavacími inštituciami/úrad práce/karierné veľtrhy/vývesky a tď)</li></ol><ol type="1" id="1ec0656d-3119-80e5-ad2a-e04d16d8ca8e" class="numbered-list" start="4"><li>Určenie zodpovednosti za získavanie zamestnancov</li></ol></div></p><ul id="1ec0656d-3119-80b3-9289-ff6aa6ec325f" class="toggle"><li><details open=""><summary><em>dalej info(metody)</em></summary><h2 id="1ec0656d-3119-802e-a263-e61ab9159055" class="">Metódy výberu zamestnancov</h2><ul id="1ec0656d-3119-804c-bf50-f8d147aad643" class="bulleted-list"><li style="list-style-type:disc">testy (odborné, psychologické, fyzické)</li></ul><ul id="1ec0656d-3119-806b-9048-cba64e1f71ee" class="bulleted-list"><li style="list-style-type:disc">simulácia prace(napr. overiť znalosť jazyka úlohou preložiť text)</li></ul><ul id="1ec0656d-3119-802d-b04b-fd918a4b6f1a" class="bulleted-list"><li style="list-style-type:disc">assessment centrum (=skupinové hodnotenie uchadzačov, viaceré ľudi(psychologovia a manažeri) oceňujú pomocou rolových hier, testov,rozhovorov, prápadových štúdií). časovo narocné a nákladné</li></ul><ul id="1ec0656d-3119-80ac-bf13-dda8f6865203" class="bulleted-list"><li style="list-style-type:disc">životopisy</li></ul><ul id="1ec0656d-3119-8041-883b-d640a0ef5204" class="bulleted-list"><li style="list-style-type:disc">motivačné listy</li></ul><ul id="1ec0656d-3119-80f1-a2a0-d5b4eb771f96" class="bulleted-list"><li style="list-style-type:disc">formuláre</li></ul><ul id="1ec0656d-3119-8066-b836-e77c66d45262" class="bulleted-list"><li style="list-style-type:disc">referencie</li></ul><ul id="1ec0656d-3119-80dc-9632-d743a0baa552" class="bulleted-list"><li style="list-style-type:disc">pohovory</li></ul><ul id="1ec0656d-3119-8001-90ac-de940d5a1fb1" class="bulleted-list"><li style="list-style-type:disc">behaviotalné rozhovory (analyza spravania, reakcii, súôsobov konania)</li></ul><figure id="1ec0656d-3119-8077-892f-e65d7e8ac58c" class="image"><a href="9%20Riadenie%20l%CC%8Cudsky%CC%81ch%20zdrojov%201ec0656d3119802dacc5e7c492a349f8/IMG_5344.jpeg"><img style="width:480px" src="9%20Riadenie%20l%CC%8Cudsky%CC%81ch%20zdrojov%201ec0656d3119802dacc5e7c492a349f8/IMG_5344.jpeg"/></a></figure></details></li></ul><p id="1ec0656d-3119-8059-af6b-df4724d34b50" class="">
+</p><ol type="1" id="1ec0656d-3119-8076-b2fd-d3d556fa4d2f" class="numbered-list" start="4"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Adaptácia</strong></mark></mark> (zapracovávanie, povýšenie /preradenie)</li></ol><p id="1ec0656d-3119-805d-b55e-d14456dffd82" class="">
+</p><ol type="1" id="1ec0656d-3119-808e-a2b7-c52e9545b14a" class="numbered-list" start="5"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Vzdelávanie a rozvoj</strong></mark></mark> (reagovať na potreby podniku/zmeny v okolí, potreba zamestnancov odborne a kariérne rásť)<ol type="a" id="1ec0656d-3119-8082-8268-d5790bd3ac15" class="numbered-list" start="1"><li><strong>Pri výkone práce </strong>(rotácie práce, porady, projekty, mentoring)</li></ol><ol type="a" id="1ec0656d-3119-806f-8073-ee5a9cf2c554" class="numbered-list" start="2"><li><strong>Mimo pracoviska</strong> (školenia, workshopy, simulácie, prípadové štúdie)</li></ol></li></ol><ul id="1ec0656d-3119-8035-829c-f0fc9f4e2e00" class="toggle"><li><details open=""><summary><em>cyklus vzdelávania</em></summary><h2 id="1ec0656d-3119-80d0-97b3-dd8ae3219c13" class="">Cyklus podnikového vzdelávania</h2><p id="1ec0656d-3119-8051-b1fd-c7b35fcf9eac" class="">=cyklus vzdelávania zamestnancov aby mal zmysel a nezmarnili sa prostriedky</p><ol type="1" id="1ec0656d-3119-8063-adf2-d12c2f132efc" class="numbered-list" start="1"><li>Identifikacia potrieb vzdelávania a rozvoja(ktorých zamestnancov a v akej oblasti máme vzdelať?)</li></ol><ol type="1" id="1ec0656d-3119-8057-aaa4-c593f1d0cce8" class="numbered-list" start="2"><li>Plánovanie vzd.(akým súôsobom, za aku cenu, kde?)</li></ol><ol type="1" id="1ec0656d-3119-8025-acce-e91cd8ea52a1" class="numbered-list" start="3"><li>realizovanie (akými metodami budä vzdelávani?)</li></ol><ol type="1" id="1ec0656d-3119-80f6-bb30-c1718d630b81" class="numbered-list" start="4"><li>Vyhodnocovanie efektivnosti (aký vysledok to prinieslo?)</li></ol><figure id="1ec0656d-3119-808f-bc49-fa43b225d7fa" class="image"><a href="9%20Riadenie%20l%CC%8Cudsky%CC%81ch%20zdrojov%201ec0656d3119802dacc5e7c492a349f8/IMG_5345.jpeg"><img style="width:400px" src="9%20Riadenie%20l%CC%8Cudsky%CC%81ch%20zdrojov%201ec0656d3119802dacc5e7c492a349f8/IMG_5345.jpeg"/></a></figure><p id="1ec0656d-3119-807d-82e9-e9dc4cbfb973" class="">
+</p><h3 id="1ec0656d-3119-80d3-afcb-fd720f73dab9" class="">Model 70-20-10 vo vzdelávaní</h3><p id="1ec0656d-3119-8097-ae2c-e5538419b11c" class="">70% vzdelávania = on-the-job metódy= učenie praxou</p><p id="1ec0656d-3119-80a4-a30b-f3981e153da6" class="">20% = koučing=učenie pomocou spätnej väzby(napr.od manažera/staršieho kolegu)</p><p id="1ec0656d-3119-8045-8256-ce37fd58494d" class="">10%=off-the-job=formalné prezentacie, školenia, semináre</p></details></li></ul><p id="1ec0656d-3119-8046-9314-e22a7e86385e" class="">
+</p><ol type="1" id="1ec0656d-3119-806e-bfaf-e4507dc3a410" class="numbered-list" start="6"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Hodnotenie výkonu</strong></mark></mark> (+vykonávanie potrebných zásahov), využitie <strong>KPI</strong> (key performance indicators, také, aby ich zamestnanec dokázal ovplyvniť), medzi 4 očami <ol type="a" id="1ec0656d-3119-8049-bf09-dabe1d4e737c" class="numbered-list" start="1"><li><strong>Výsledky práce</strong> (množstvo produktov, počet nepodarkov/reklamácií, spokojnosť zákazníkov)</li></ol><ol type="a" id="1ec0656d-3119-80c9-bf11-dc814b98ccf9" class="numbered-list" start="2"><li><strong>Pracovné správanie </strong>(dochádzka, dodržiavanie pracovnej disciplíny)</li></ol><ol type="a" id="1ec0656d-3119-80c4-ab44-fcec5a4190a1" class="numbered-list" start="3"><li><strong>Sociálne správanie</strong> (ochota spolupracovať, vzťah k zákazníkom, s kolegami)</li></ol><ol type="a" id="1ec0656d-3119-80e3-b55b-c8e31cfef181" class="numbered-list" start="4"><li><strong>Osobnostné charakteristiky </strong>(cieľavedomosť, samostatnosť, zodpovednosť, tvorivosť)</li></ol></li></ol><ul id="1ec0656d-3119-80e4-a271-c8c14f90137d" class="toggle"><li><details open=""><summary>ďalšie info<br/><br/></summary><p id="1ec0656d-3119-8035-bc5b-d913f0420206" class="">Na aké <strong>3 oblast</strong>i musime sa sustrediť pri hodnotení práce?</p><ol type="1" id="1ec0656d-3119-80a9-9302-d581464179f1" class="numbered-list" start="1"><li>výstup (=výsledky práce)</li></ol><ol type="1" id="1ec0656d-3119-8014-920c-f21e28f7f1bb" class="numbered-list" start="2"><li>vstup (=čo zamestnanec do práce vkladá,potencial,prax,spôsobilosť)</li></ol><ol type="1" id="1ec0656d-3119-80b0-be6d-dc882d8e434c" class="numbered-list" start="3"><li>proces (ako zames.pristupuje k úloham a povinnostiam)</li></ol><p id="1ec0656d-3119-80f9-97f3-cc20ce3a6ec2" class="">
+</p><p id="1ec0656d-3119-8086-b506-fea1386f2609" class=""><em><mark class="highlight-yellow_background"><strong>Metódy hodnotenia</strong></mark></em></p><ul id="1ec0656d-3119-8098-b10f-e96236b9b1d9" class="bulleted-list"><li style="list-style-type:disc">- hodnotiace stupnice (napr. BARS stupnica- pre hodnotenie správania)</li></ul><ul id="1ec0656d-3119-80e7-8539-e636091740a1" class="bulleted-list"><li style="list-style-type:disc">- sebahodnotenie</li></ul><ul id="1ec0656d-3119-80cc-adc0-f681a76834dc" class="bulleted-list"><li style="list-style-type:disc">- 360° spätnej väzby (=zamestnanca hodnotia nielen nadriadený, ale aj ďalšie kolegovia,podriadení,zákaznici)<br/><br/><br/><em><mark class="highlight-yellow_background">Aké úlohy plní hodnotenie v riadení ľud.zdr</mark></em><p id="1ec0656d-3119-8089-acd7-fa41df0688b3" class="">úlohy Sudcu a Radcu</p><p id="1ec0656d-3119-8001-994d-ee2fb8700672" class="">sudcu:</p><ul id="1ec0656d-3119-803a-875c-f2d171abe161" class="bulleted-list"><li style="list-style-type:circle">-monitoring a posudok minulých výkonov</li></ul><ul id="1ec0656d-3119-80b4-b799-e3d58815a82a" class="bulleted-list"><li style="list-style-type:circle">-spätná väzba</li></ul><ul id="1ec0656d-3119-8004-bb91-e501587779d5" class="bulleted-list"><li style="list-style-type:circle">-zaklad na rozhodovanie o odmenach</li></ul><p id="1ec0656d-3119-809a-ba4d-fefca8356026" class="">radcu:</p><ul id="1ec0656d-3119-808d-acdf-d7be4c5c305f" class="bulleted-list"><li style="list-style-type:circle">-pomahá identifikovať potencial</li></ul><ul id="1ec0656d-3119-80bc-a265-d94643b80fbf" class="bulleted-list"><li style="list-style-type:circle">-vytvará predpoklad na zlepš.výkonu</li></ul><ul id="1ec0656d-3119-80cc-8d8f-eaa7052a71f5" class="bulleted-list"><li style="list-style-type:circle">- identifikacia potrieb vzdelavania a rozvoja</li></ul></li></ul></details></li></ul><p id="1ec0656d-3119-80af-9473-c5c7a18e06b5" class="">
+</p><ol type="1" id="1ec0656d-3119-80d8-9e1b-d9bfead6c1e0" class="numbered-list" start="7"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Odmeňovanie, starostlivosť</strong></mark></mark> (kompenzácia za odvedenú prácu, zdravé pracovné vzťahy, bezpečnosť, prevencia a riešenie konflliktov)<ul id="1ec0656d-3119-802a-bc44-eb5e2385f4f0" class="bulleted-list"><li style="list-style-type:disc"><strong>Priame peňažné odmeňovanie</strong>: (fixná zložka, pohyblivá zložka – úkolová mzda, prémie, odmeny, podiely na zisku)</li></ul><ul id="1ec0656d-3119-80db-acc1-dc9141e8e167" class="bulleted-list"><li style="list-style-type:disc"><strong>Zamestnanecké benefity </strong>(“Cafeteria” systém – voliteľný = systém jadra, systém balíčkov, systém menu)</li></ul><ul id="1ec0656d-3119-80cb-982c-e9bffaedca40" class="bulleted-list"><li style="list-style-type:disc"><strong>Nepriame peňažné odmeňovanie</strong> (zamestnanecké akcie, poistenie, príplatky na stravovanie)</li></ul><ul id="1ec0656d-3119-8023-b4e1-df482c926863" class="bulleted-list"><li style="list-style-type:disc"><strong>Nepeňažné odmeňovanie</strong> (firemné auto, príspevok na auto, využívanie rekreačných zariadení)</li></ul><figure id="1ec0656d-3119-8071-a6f2-c81b72692ec6" class="image"><a href="9%20Riadenie%20l%CC%8Cudsky%CC%81ch%20zdrojov%201ec0656d3119802dacc5e7c492a349f8/IMG_5339.jpeg"><img style="width:400px" src="9%20Riadenie%20l%CC%8Cudsky%CC%81ch%20zdrojov%201ec0656d3119802dacc5e7c492a349f8/IMG_5339.jpeg"/></a></figure><ul id="1ec0656d-3119-8077-9bce-dd56b33f9eca" class="toggle"><li><details open=""><summary><em>dalej (kafeteria, Total Compensation)</em></summary><p id="1ec0656d-3119-809c-80bd-ce3e5559ab7c" class="">prístup Total Compensation- komplexný prístup k odmeňovaniu=zamest.ziskavá celý baliček rôznych foriam a druhov odmeny (použivajú mnohé firmy)<br/><br/><br/><em><strong>System kafeteria:</strong></em></p><p id="1ec0656d-3119-8035-b54d-e780991b5cc0" class="">=voliteľný system akým zamestnanci vyberajú odmeny</p><ul id="1ec0656d-3119-800c-bc44-c152d43f0590" class="bulleted-list"><li style="list-style-type:disc">system jadra = jadro(dáne,nemenné)+voliteľné zložky</li></ul><ul id="1ec0656d-3119-8008-8d6c-c28867584f48" class="bulleted-list"><li style="list-style-type:disc">system menu --&gt;sam voliš benefity =vytvaraš svoju kombinaciu</li></ul><ul id="1ec0656d-3119-809c-840b-cc100f12a7d7" class="bulleted-list"><li style="list-style-type:disc">system voliteľných blokov (balikov)--zamestnanec vyberá medzi hotových balikov<br/><br/>❗️zasada nediskriminacie=rovnaka mzda za prácu rovnakej hodnoty<br/></li></ul></details></li></ul><p id="1ec0656d-3119-8017-a8af-e4718723e31a" class="">
+</p></li></ol><ol type="1" id="1ec0656d-3119-80c9-926e-d7766f7492d4" class="numbered-list" start="8"><li><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Uvoľňovanie zamestnancov</strong></mark></mark> (aby to nepoškodilo meno podniku, nejak ohrozilo súčasných zamestnancov, služby<strong> outplacementu</strong> – podpora nedobrovoľne prepustených zamestnancov, pri hľadaní nového zamestnania, vedenie <strong>uvoľňovacích rozhovorov</strong>)</li></ol><p id="1ec0656d-3119-8035-993a-dde7d7c8f5c4" class="">
+</p><p id="1ec0656d-3119-80dd-8de7-fe8621d35927" class="">Súhrn personalných funkcie(čo robí pri káždej personalný utvar a čo nadriadený):</p><figure id="1ec0656d-3119-8075-ac2b-d0dbd55e7e28" class="image"><a href="9%20Riadenie%20l%CC%8Cudsky%CC%81ch%20zdrojov%201ec0656d3119802dacc5e7c492a349f8/IMG_5340.jpeg"><img style="width:400px" src="9%20Riadenie%20l%CC%8Cudsky%CC%81ch%20zdrojov%201ec0656d3119802dacc5e7c492a349f8/IMG_5340.jpeg"/></a></figure><figure id="1ec0656d-3119-80ec-84f5-c7e8a8f7c81f" class="image"><a href="9%20Riadenie%20l%CC%8Cudsky%CC%81ch%20zdrojov%201ec0656d3119802dacc5e7c492a349f8/IMG_5341.jpeg"><img style="width:400px" src="9%20Riadenie%20l%CC%8Cudsky%CC%81ch%20zdrojov%201ec0656d3119802dacc5e7c492a349f8/IMG_5341.jpeg"/></a></figure><figure id="1ec0656d-3119-80dd-9d37-cc1e57e6995b" class="image"><a href="9%20Riadenie%20l%CC%8Cudsky%CC%81ch%20zdrojov%201ec0656d3119802dacc5e7c492a349f8/IMG_5342.jpeg"><img style="width:400px" src="9%20Riadenie%20l%CC%8Cudsky%CC%81ch%20zdrojov%201ec0656d3119802dacc5e7c492a349f8/IMG_5342.jpeg"/></a></figure><p id="1ec0656d-3119-807e-91bd-def3cffa9bae" class="">
+</p><p id="1ec0656d-3119-8030-8b88-c120fe41b163" class="">
+</p><h2 id="1ec0656d-3119-8087-8f21-eb1e0e2820f4" class=""></h2><p id="1ec0656d-3119-8076-944b-c2cb404b2058" class="">
+</p><p id="1ec0656d-3119-801c-b54b-fa8bd71318b8" class="">
+</p><p id="1ec0656d-3119-80a0-9a65-fd57134c285f" class="">
+</p><p id="1ec0656d-3119-807d-8dbc-c00b55a930e4" class="">
+</p><p id="1ec0656d-3119-80d0-9573-eefabd089729" class="">
+</p><p id="1ec0656d-3119-8087-a3e4-e2ee77390900" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+
+<script src="securePage.js"></script>
+<script src="/verifyIP.js"></script>
+</body></html>

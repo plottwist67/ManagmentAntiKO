@@ -1,0 +1,727 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>11. Vedenie ľudí – 2. Komunikácia</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+       .back-to-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1ec0656d-3119-8029-b393-ff81cee0ac27" class="page sans"><header><h1 class="page-title">11. Vedenie ľudí – 2. Komunikácia</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Created</th><td><time>@May 7, 2025 11:27 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><h1 id="1ec0656d-3119-80b7-b9be-e16d10235511" class="">KOMUNIKÁCIA (proces výmeny informácií)</h1><h2 id="1ec0656d-3119-80b6-939f-d5442b5ef933" class="">VÝVOJOVÉ ETAPY</h2><ol type="1" id="1ec0656d-3119-80a2-bc9e-d3468bd63a1a" class="numbered-list" start="1"><li>etapa – <strong>zvuky, signály</strong> </li></ol><ol type="1" id="1ec0656d-3119-804f-88e0-c115116d66b6" class="numbered-list" start="2"><li>etapa – <strong>reč</strong></li></ol><ol type="1" id="1ec0656d-3119-8012-b281-f6e15cf479d2" class="numbered-list" start="3"><li>etapa –<strong> písmo</strong></li></ol><ol type="1" id="1ec0656d-3119-801f-90ac-c6cf19b65cb4" class="numbered-list" start="4"><li>etapa – <strong>kníhtlač</strong> (rozširovanie informácií)</li></ol><ol type="1" id="1ec0656d-3119-803b-b4e6-cfa1fa8cce21" class="numbered-list" start="5"><li>etapa – <strong>masová komunikácia</strong> (médiá)</li></ol><ol type="1" id="1ec0656d-3119-80ea-b182-fb0577895af3" class="numbered-list" start="6"><li>etapa – <strong>virtuálna komunikácia </strong></li></ol><p id="1ec0656d-3119-804b-9b08-dcb9b9e6a2a0" class="">
+</p><h2 id="1ec0656d-3119-8081-a0bc-cf677e012a56" class="">KOMUNIKÁCIA z manažérskeho hľadiska </h2><p id="1ec0656d-3119-8001-9f00-d8d26732ff1f" class="">Tok informácií v rámci organizácie</p><p id="1ec0656d-3119-8053-8aa9-f45b8816ec01" class=""><strong><span style="border-bottom:0.05em solid">Význam</span></strong>: v každej situácií (výber cieľov, spôsobov ich dosiahnutia, riešenie problémov, zavádzanie zmien), hlavný nástroj práce s ľuďmi</p><p id="1ec0656d-3119-80fe-945c-c3dea642169a" class="">Do manažmentu prichádza <span style="border-bottom:0.05em solid">na prelome 20. storočia</span>, dovtedy bola vnímaná <span style="border-bottom:0.05em solid">ako sekundárny jav</span> (nepripisoval sa veľký význam, spájaná s príkazmi od nadriadených, klasická škola, aby pracovníci vedeli, čo a ako majú robiť)</p><p id="1ec0656d-3119-80f6-9687-d06d5e8f1a08" class=""><strong>Baťa </strong>– iný, uvedomuje si, že je dôležité do úvahy brať aj samotného zamestnanca</p><p id="1ec0656d-3119-802d-bb33-fabaadde2fdc" class="">
+</p><p id="1ec0656d-3119-804e-a525-fcef8901ced8" class=""><mark class="highlight-orange"><strong>Podniková komunikácia</strong></mark> – prebieha v uzavretom priestore, v rámci podniku, zameraná na plnenie pracovných úloh, vytváranie pracovného komunikačného prostredia<div class="indented"><ul id="1ec0656d-3119-8032-8008-debd91acaf51" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Manažérska komunikácia</strong></mark><mark class="highlight-yellow"> </mark>– špecifický typ podnikovej komunikácie</li></ul></div></p><p id="1ec0656d-3119-8011-a5a8-c82c75e3252a" class="">
+</p><p id="1ec0656d-3119-807d-bff6-f4c335c75117" class="">
+</p><h2 id="1ec0656d-3119-809b-9823-ddaf8ceb7dbe" class="">ZÁKLADNÉ POJMY</h2><div id="1ec0656d-3119-80bd-b99e-f8edca2f89bb" class="column-list"><div id="1ec0656d-3119-80d7-a929-ce025172990c" style="width:100%" class="column"><p id="1ec0656d-3119-8095-919a-e5d41f7002f1" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Údaj</strong></mark></mark> (dáta) = výrok, opisujúci realitu</p><p id="1ec0656d-3119-80d1-b06c-d7bb4348f615" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Informácia</strong></mark></mark> = spracovanie údaju, interpretujeme, využijeme, zvyšovanie vedomosti</p><p id="1ec0656d-3119-80c5-bc9e-de9337d2a9e4" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Znalosť</strong></mark></mark> = informácia spracovaná mozgom, ako informáciu využiť v danej situácii</p><p id="1ec0656d-3119-80c6-88f4-f36ea112f563" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Informačný pretlak</strong></mark></mark> = stav preinformovanosti, množstvo nesprávnych, zavádzajúcich, náročné sa v nich orientovať</p><p id="1ec0656d-3119-8083-be6e-ec597fe913ae" class="">
+</p></div><div id="1ec0656d-3119-80d0-aad1-e7d53ef125c8" style="width:100%" class="column"><figure id="1ec0656d-3119-809a-b4ea-d3685464d740" class="image"><a href="11%20Vedenie%20l%CC%8Cudi%CC%81%20%E2%80%93%202%20Komunika%CC%81cia%201ec0656d31198029b393ff81cee0ac27/5501e876-f623-4c98-bf34-02561e557b17.png"><img style="width:576px" src="11%20Vedenie%20l%CC%8Cudi%CC%81%20%E2%80%93%202%20Komunika%CC%81cia%201ec0656d31198029b393ff81cee0ac27/5501e876-f623-4c98-bf34-02561e557b17.png"/></a></figure><p id="1ec0656d-3119-8030-a403-e36eaef91eab" class="">
+</p></div></div><p id="1ec0656d-3119-8048-94eb-cd286fb8fe53" class=""><strong><span style="border-bottom:0.05em solid">Dimenzie informácie:</span></strong> (kvalitné informácie z hľadiska manažérskej komunikácie by mali obsahovať)</p><div id="1ec0656d-3119-80f1-85ee-c872fe45f806" class="column-list"><div id="1ec0656d-3119-80a3-863e-daec0a1974e8" style="width:100%" class="column"><ul id="1ec0656d-3119-804b-833f-ce66cad26e8a" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Obsahová</strong></mark> (presnosť, relevantnosť, úplnosť, rozsah, potrebnosť)</li></ul><ul id="1ec0656d-3119-80fd-9ccc-d188f51933f3" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Časová</strong></mark> (aktuálnosť, frekvencia, časové obdobie – minulosť, prítomnosť, budúcnosť)</li></ul><ul id="1ec0656d-3119-80be-8dc0-e8fbe3ca8b4a" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Forma</strong></mark> (zrozumiteľnosť, úroveň detailnosti, usporiadanosť, forma prezentácie, typ média)</li></ul><p id="1ec0656d-3119-80df-9b01-d61ea716b45b" class="">
+</p></div><div id="1ec0656d-3119-8065-873a-f8a555db150b" style="width:100%" class="column"><figure id="1ec0656d-3119-80b4-a4e1-e59884c6b7ab" class="image"><a href="11%20Vedenie%20l%CC%8Cudi%CC%81%20%E2%80%93%202%20Komunika%CC%81cia%201ec0656d31198029b393ff81cee0ac27/d5953e7c-88ab-440c-b847-a84faa5f0bc6.png"><img style="width:528px" src="11%20Vedenie%20l%CC%8Cudi%CC%81%20%E2%80%93%202%20Komunika%CC%81cia%201ec0656d31198029b393ff81cee0ac27/d5953e7c-88ab-440c-b847-a84faa5f0bc6.png"/></a></figure><p id="1ec0656d-3119-808d-94bb-c49a8c897ca0" class="">
+</p></div></div><p id="1ec0656d-3119-8086-a9a7-ce8a0918266e" class=""><strong><span style="border-bottom:0.05em solid">Zložky komunikačného procesu</span></strong>:</p><ul id="1ec0656d-3119-808d-80a2-ceca9f77de72" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Komunikátor </strong></mark>(odosielateľ)</li></ul><ul id="1ec0656d-3119-80fa-b88a-d61a335b99cf" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Komunikant</strong></mark> (príjemca)</li></ul><ul id="1ec0656d-3119-8025-80b5-d5df1484f6da" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Komuniké</strong></mark> (správa) – kódovanie, dekódovanie</li></ul><ul id="1ec0656d-3119-807a-9ab6-c8f32a82f748" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Médium</strong></mark> (nástroj, kanál, napr. telefón)</li></ul><ul id="1ec0656d-3119-801e-9d08-dbe0e023e7dc" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Kontext </strong></mark>(situácia) – fyzické, sociálne, psychologické prostredie</li></ul><ul id="1ec0656d-3119-8049-b63a-e22859b00d9f" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Zámer</strong></mark></li></ul><ul id="1ec0656d-3119-80f0-b0f0-fed0344006d6" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Spätná väzba</strong></mark> (vyjadruje celkový efekt komunikácie)</li></ul><ul id="1ec0656d-3119-8054-9bbf-fc4733c116f5" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Komunikačný šum</strong></mark> (skreslenie, poškodenie informácie pri prenose)<ul id="1ec0656d-3119-8095-aa60-e790dfdd643f" class="bulleted-list"><li style="list-style-type:circle"><strong>Fyzické</strong> (napr. hluk)</li></ul><ul id="1ec0656d-3119-8015-98dc-e1ac261db236" class="bulleted-list"><li style="list-style-type:circle"><strong>Fyziologické</strong> (napr. choroba, bolesť hlavy)</li></ul><ul id="1ec0656d-3119-8070-88c2-fe76d6dded0d" class="bulleted-list"><li style="list-style-type:circle"><strong>Sémantické</strong> (napr. iné jazyky, dialekty)</li></ul><ul id="1ec0656d-3119-80b6-87a3-d38d12006677" class="bulleted-list"><li style="list-style-type:circle"><strong>Psychologické</strong> (napr. nedôverčivosť, podozrievavosť)</li></ul><ul id="1ec0656d-3119-8072-b27b-d13252f4f212" class="bulleted-list"><li style="list-style-type:circle"><strong>Kultúrne</strong> (odlišné vyhodnotenie situácie)</li></ul></li></ul><p id="1ec0656d-3119-80b2-b65b-ef274ec44597" class="">
+</p><p id="1ec0656d-3119-8017-98bb-cbb4346fb70e" class="">
+</p><h2 id="1ec0656d-3119-80c8-99a9-f401f194e0ae" class="">KOMUNIKAČNÉ MODELY</h2><ul id="1ec0656d-3119-8017-be1f-c99f019ed59d" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Lineárny</strong></mark></mark> (jednosmerná, chýba spätná väzba, masová komunikácia)</li></ul><ul id="1ec0656d-3119-8033-b298-f4df2129dd9a" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Interakčný</strong></mark></mark> (prebieha interakcia, role sa striedajú – každý je chvíľu hovorcom a poslucháčom, sú vnímané ako separátne akcie, ktoré sa neprekrývajú) – firma urobí kampaň a čaká na reakciu zákazníkov</li></ul><ul id="1ec0656d-3119-8045-9797-f385d9aa9e0c" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Transakčný</strong></mark></mark> (každý komunikačný partner hovorí aj počúva zároveň)</li></ul><p id="1ec0656d-3119-8078-8790-d746e74a402c" class="">
+</p><h2 id="1ec0656d-3119-8038-a305-e17a0f3814bf" class="">KOMUNIKAČNÉ PROSTREDIE V PODNIKU</h2><p id="1ec0656d-3119-809e-bb73-e7b7061d4c36" class=""><strong><span style="border-bottom:0.05em solid">Funkcie:</span></strong></p><ul id="1ec0656d-3119-809a-8c2a-fc1fdfabf458" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Informačná </strong></mark></li></ul><ul id="1ec0656d-3119-80d6-9c6b-d4ac71fdbd10" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Príkazová </strong></mark></li></ul><ul id="1ec0656d-3119-8030-a5fa-fc73028bd8e9" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Motivačná </strong></mark></li></ul><ul id="1ec0656d-3119-803c-9e77-f3f6fad4c321" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Regulačná</strong></mark></li></ul><p id="1ec0656d-3119-8068-8095-f141f0c92647" class="">
+</p><div id="1ec0656d-3119-80c5-8050-eee43caf5ef4" class="column-list"><div id="1ec0656d-3119-8093-8145-dac509669d9d" style="width:100%" class="column"><h3 id="1ec0656d-3119-8048-a778-e8722256facc" class="">INTERNÁ KOMUNIKÁCIA (vnútropodniková)</h3><p id="1ec0656d-3119-807c-969e-ce788da0da61" class=""><strong><span style="border-bottom:0.05em solid">Funkcie:</span></strong> (v praxi sa prelínajú)</p><ul id="1ec0656d-3119-8006-b151-df5159480cac" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Primárne</strong></mark> = priamo ovplyvňujú chod (napr. deľba práce, vysvetľovanie úloh)</li></ul><ul id="1ec0656d-3119-80e0-86e8-d1e60027528d" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Sekundárne</strong></mark> = rozvíjanie vzťahov (napr. motivácia zamestnancov)</li></ul><p id="1ec0656d-3119-80ac-80b8-e5186b354405" class="">
+</p><p id="1ec0656d-3119-80c7-ba83-cb1555c78269" class=""><strong><span style="border-bottom:0.05em solid">Smery: </span></strong></p><ul id="1ec0656d-3119-8040-8229-ce334b1698fa" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-default_background"><strong>Vertikálna</strong></mark></mark><mark class="highlight-default_background"> (zhora nadol/zdola nahor), osobitný typ je coaching (poradenská funkcia)</mark></li></ul><ul id="1ec0656d-3119-808f-9fb5-f7ab1fcb0d8e" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-default_background"><strong>Horizontálna</strong></mark></mark><mark class="highlight-default_background"> (medzi útvarmi, riešenie významných úloh, spolupráca odborníkov)</mark></li></ul><ul id="1ec0656d-3119-80f4-9521-e382933333b1" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-default_background"><strong>Diagonálna</strong></mark></mark><mark class="highlight-default_background"> (spája pracovníkov rôznych úrovní, bez vzťahov nadriadenosti a podriadenosti)</mark></li></ul><ul id="1ec0656d-3119-80b5-bbd6-ced0cefdd0fb" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-default_background"><strong>Formálna</strong></mark></mark><mark class="highlight-default_background"> (vyplýva z formálnej štruktúry)</mark></li></ul><ul id="1ec0656d-3119-80a5-90c5-e701bd69adde" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-default_background"><strong>Neformálna</strong></mark></mark><mark class="highlight-default_background"> (v rámci tímo</mark>v)</li></ul></div><div id="1ec0656d-3119-807a-a33b-f8e5712446af" style="width:100%" class="column"><p id="1ec0656d-3119-80ca-a05f-c69859aa0e33" class="">
+</p><figure id="1ec0656d-3119-8087-b525-e4297a925d84" class="image"><a href="11%20Vedenie%20l%CC%8Cudi%CC%81%20%E2%80%93%202%20Komunika%CC%81cia%201ec0656d31198029b393ff81cee0ac27/80922752-4ad0-44ee-b11b-8380dd80cb0b.png"><img style="width:463.92344497607655px" src="11%20Vedenie%20l%CC%8Cudi%CC%81%20%E2%80%93%202%20Komunika%CC%81cia%201ec0656d31198029b393ff81cee0ac27/80922752-4ad0-44ee-b11b-8380dd80cb0b.png"/></a></figure><p id="1ec0656d-3119-80fe-80de-fd3cb92ab56b" class="">
+</p></div></div><p id="1ec0656d-3119-80a2-8e19-e5761ad74397" class="">
+</p><h3 id="1ec0656d-3119-8075-9c4e-ca4558f68e73" class="">EXTERNÁ KOMUNIKÁCIA (smerom k vonkajšiemu prostrediu)</h3><p id="1ec0656d-3119-80e8-8b69-c6806706c398" class="">Úloha: informovanie o produktoch, aktivitách službách, šírenie dobrého mena, oslovenie potencionálnych zákazníkov</p><p id="1ec0656d-3119-8038-8a62-f184ecd40b06" class=""><strong><span style="border-bottom:0.05em solid">Smery:</span></strong></p><ul id="1ec0656d-3119-80a3-988d-e2efda798c40" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Podnikateľský</strong></mark> – sleduje sa podnikateľský zámer (komunikácia s dodávateľmi, odberateľmi, investormi)</li></ul><ul id="1ec0656d-3119-80a0-a6d9-ef93c1146154" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Verejný</strong></mark> – rozvíjanie publicity, mena </li></ul><p id="1ec0656d-3119-8081-9a65-d4ad3de3795e" class="">
+</p><p id="1ec0656d-3119-8062-a36f-d899d73c5f46" class="">
+</p><h2 id="1ec0656d-3119-8018-a350-dfa75fa4c07d" class="">FORMY KOMUNIKÁCIE</h2><h3 id="1ec0656d-3119-8075-b5be-e7e8901dec26" class="">VERBÁLNA (využitie jazyka  – hovorová, písomná)</h3><ul id="1ec0656d-3119-80e9-896f-cf820c40a01f" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Komunikačný štýl</strong></mark> (spôsob)<ul id="1ec0656d-3119-809f-9998-f6ae560b0ecb" class="bulleted-list"><li style="list-style-type:circle"><strong>Analytický</strong> (pasívny, menej komunikuje, viac premýšľa, kontroluje, menej emócií)</li></ul><ul id="1ec0656d-3119-80b3-aaf1-de773720c6b5" class="bulleted-list"><li style="list-style-type:circle"><strong>Riadiaci</strong> (direktívna komunikácia, argumentovanie)</li></ul><ul id="1ec0656d-3119-808e-b7b9-f72a142268db" class="bulleted-list"><li style="list-style-type:circle"><strong>Priateľský</strong> (s neformálnymi prvkami, využitie spätnej väzby)</li></ul><ul id="1ec0656d-3119-8037-8db8-dc263f537ca7" class="bulleted-list"><li style="list-style-type:circle"><strong>Expresívny</strong> (zameraná na vlastný prospech, prijímanie unáhlených rozhodnutí)</li></ul><ul id="1ec0656d-3119-8009-bf72-d8723c86774a" class="bulleted-list"><li style="list-style-type:circle"><strong>Odborný </strong>(odborné, presné, využívanie termínov, grafov)</li></ul></li></ul><p id="1ec0656d-3119-8045-b3fe-e75fc9797e6e" class="">
+</p><p id="1ec0656d-3119-80be-859e-e921b85742e5" class="">
+</p><h3 id="1ec0656d-3119-8005-981a-f9562e6f9c39" class="">NEVERBÁLNA (prostredníctvom tela) </h3><div id="1ec0656d-3119-801d-8f87-da773b230d5b" class="column-list"><div id="1ec0656d-3119-8074-bfe2-dcf00e926fad" style="width:100%" class="column"><figure id="1ec0656d-3119-8049-aebb-e40316a92111" class="image" style="text-align:left"><a href="11%20Vedenie%20l%CC%8Cudi%CC%81%20%E2%80%93%202%20Komunika%CC%81cia%201ec0656d31198029b393ff81cee0ac27/7fa30763-28ed-4f19-b569-908f5f07395f.png"><img style="width:624px" src="11%20Vedenie%20l%CC%8Cudi%CC%81%20%E2%80%93%202%20Komunika%CC%81cia%201ec0656d31198029b393ff81cee0ac27/7fa30763-28ed-4f19-b569-908f5f07395f.png"/></a></figure><p id="1ec0656d-3119-80ec-903d-f7f951f997fd" class="">
+</p></div><div id="1ec0656d-3119-809b-931c-c27058f76db3" style="width:100%" class="column"><p id="1ec0656d-3119-8000-a9c5-d5ed97b93d35" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Proxemika</strong></mark></mark>: vzdialenosť</p><ul id="1ec0656d-3119-802c-85e8-ddb8cdf2e460" class="bulleted-list"><li style="list-style-type:disc"><strong>Intímna zóna</strong> (do 45cm)</li></ul><ul id="1ec0656d-3119-804b-bcc9-e616c92f6598" class="bulleted-list"><li style="list-style-type:disc"><strong>Osobná zóna</strong> (do 120 cm)</li></ul><ul id="1ec0656d-3119-80bb-87ef-d2f3b4174f3a" class="bulleted-list"><li style="list-style-type:disc"><strong>Spoločenská zóna</strong> (do 300 cm)</li></ul><ul id="1ec0656d-3119-80fa-9685-f02c3de2c64c" class="bulleted-list"><li style="list-style-type:disc"><strong>Verejná zóna</strong> (300 cm+)</li></ul><p id="1ec0656d-3119-807b-a791-e016d34682bb" class="">
+</p><p id="1ec0656d-3119-80f3-acc1-f5bd17899ea5" class="">Paralingvistika: spôsob podania informácie (tón, sila hlasu)</p></div></div><h3 id="1ec0656d-3119-8010-b35f-ec68925d615f" class="">AKTÍVNE POČÚVANIE</h3><p id="1ec0656d-3119-803d-af8a-daa7c03fcb62" class="">Schopnosť komplexne dešifrovať správu, aj prostredníctvom neverbálnej komunikácie, počuť aj nevypovedané + poskytnutie spätnej väzby</p><p id="1ec0656d-3119-8007-9a9c-c8d5671bb821" class="">
+</p><p id="1ec0656d-3119-8055-8018-d6ff1b66e9da" class="">
+</p><h2 id="1ec0656d-3119-800f-862b-ee2d5079a3e3" class="">DRUHY MANAŽÉRSKEJ KOMUNIKÁCIE</h2><ul id="1ec0656d-3119-80d7-9943-ce91479539da" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Interpersonálna </strong></mark>(v rámci podniku)</li></ul><ul id="1ec0656d-3119-805c-8e12-c7fcc20e2b53" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Intrapersonálna</strong></mark> (sám so sebou)</li></ul><ul id="1ec0656d-3119-8098-81c2-ed5de57bdab3" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Masová</strong></mark> (viacero odosielateľov aj príjemcov, zohľadňuje sa viac ľudí)</li></ul><p id="1ec0656d-3119-80b5-bb77-ccdd6b37398a" class="">
+</p><h2 id="1ec0656d-3119-80ee-beac-c0760a2eb457" class="">KOMUNIKAČNÉ KOMPETENCIE</h2><p id="1ec0656d-3119-8034-ba92-c8ea49353439" class="">Význam od 80. rokov, poznám jednotlivé aspekty jazyka a dokážem ich aktívne uplatňovať pri vzájomnej komunikácii</p><p id="1ec0656d-3119-807a-9686-f67ff33106b1" class="">
+</p><ul id="1ec0656d-3119-80b6-88c2-f29df5116d74" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Komunikačné zručnosti</strong></mark></mark> (získavajú sa, rozvíjajú počas života)<ul id="1ec0656d-3119-80f9-afab-e06933452626" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Receptívne</strong></mark> = schopnosť vnímať partnera (pozorovať, počúvať, byť empatický)</li></ul><ul id="1ec0656d-3119-8003-ae5b-d7ae8499e0bc" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Expresívne</strong></mark> = proaktívny prístup (pýtať sa, objasňovať, vysvetľovať, presviedčať, prijímať závery)</li></ul></li></ul><p id="1ec0656d-3119-80c0-b2d3-dafd6cd999fa" class="">
+</p><p id="1ec0656d-3119-8097-8e6e-c13c031056a9" class=""><strong><span style="border-bottom:0.05em solid">Patria sem</span></strong>: </p><ul id="1ec0656d-3119-80ee-968a-f79558c31eb8" class="bulleted-list"><li style="list-style-type:disc"><strong>Osobné nastavenie jednotlivca</strong></li></ul><ul id="1ec0656d-3119-80b0-ac35-fe18c7665a49" class="bulleted-list"><li style="list-style-type:disc"><strong>Psychické stavy</strong></li></ul><ul id="1ec0656d-3119-8023-b566-c80b28eb38b0" class="bulleted-list"><li style="list-style-type:disc"><strong>Aktívne počúvanie </strong></li></ul><ul id="1ec0656d-3119-8019-9a76-ca02f6f7b740" class="bulleted-list"><li style="list-style-type:disc"><strong>Empatia </strong></li></ul><ul id="1ec0656d-3119-800e-96c6-f513e2fe54aa" class="bulleted-list"><li style="list-style-type:disc"><strong>Asertivita </strong>(spôsob presadzovania sa)</li></ul><ul id="1ec0656d-3119-801a-8ac4-ffdfe9fec244" class="bulleted-list"><li style="list-style-type:disc"><strong>Persuázia</strong> (schopnosť presvedčiť)</li></ul><p id="1ec0656d-3119-8060-b0e7-e51657a0613c" class="">
+</p><h2 id="1ec0656d-3119-805c-b464-ccb4ea99e574" class="">ŠPECIFICKÉ KOMUNIKAČNÉ SITUÁCIE</h2><p id="1ec0656d-3119-8050-8996-ca61f2bc56f9" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Krízová komunikácia </strong></mark></mark>– maximálna reakčná doba na problém je 24 hodín, jednoznačnosť, rýchlosť, konzistentnosť, budovanie dôvery, relevantnosť</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+<a href="/index.html" class="back-to-home">Back to Initial Page</a>
+<script src="securePage.js"></script>
+<script src="/verifyIP.js"></script>
+</body></html>

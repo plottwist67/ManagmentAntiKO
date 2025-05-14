@@ -1,0 +1,738 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>8. Organizovanie, organizačné štruktúry</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+       .back-to-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1ec0656d-3119-8035-b31b-c63e0c94f15b" class="page sans"><header><h1 class="page-title">8. Organizovanie, organizačné štruktúry</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Created</th><td><time>@May 7, 2025 10:46 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><h2 id="1ec0656d-3119-80e4-a540-f0476aeba533" class="">VYMEDZENIE POJMU ORGANIZÁCIA</h2><ul id="1ec0656d-3119-8094-b250-f4f460836e19" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Dynamický pohľad</strong></mark></mark> <strong>– organizácia = činnosť </strong>(pripravovanie, zriaďovanie niečoho)</li></ul><ul id="1ec0656d-3119-8023-afa8-e087acb558fb" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Statický pohľad</strong></mark></mark> <strong>– organizácia = usporiadanie</strong> (výsledok organizovania, zameranie sa na rozloženie, štruktúru)</li></ul><ul id="1ec0656d-3119-8038-83a0-c3d165ef592a" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Reálny objekt</strong></mark></mark> <strong>– organizácia = objekt</strong> (zoskupenie ľudí/inštitúcií spojených spoločným cieľom)</li></ul><ul id="1ec0656d-3119-80b3-a3e7-e80f181583c0" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Atribútový pohľad</strong></mark></mark> <strong>– organizácia = vlastnosť objektu</strong> (miPera, kvalita usporiadania, organizovanosť)</li></ul><p id="1ec0656d-3119-80a5-9b24-dbfa0077d4a3" class="">
+</p><h2 id="1ec0656d-3119-8036-bb94-e94a0971b3dc" class="">ZMYSEL EXISTENCIE ORGANIZÁCIÍ (PODNIKOV)</h2><ul id="1ec0656d-3119-80f6-8f06-c37366a01236" class="bulleted-list"><li style="list-style-type:disc">Vytvárajú<strong> hodnotu</strong> (pre zamestnancov, vlastníkov, zákazníkov, spoločnosť – platenie daní, zamestnávanie ľudí, vytváranie pozitívnych externalít, podpora ekológie)</li></ul><ul id="1ec0656d-3119-8071-96e4-e9cb3378d54f" class="bulleted-list"><li style="list-style-type:disc">Spájajú rôzne zdroje tak, aby sa splnil <strong>špecifický cieľ </strong></li></ul><ul id="1ec0656d-3119-803a-bcaf-d925f4669126" class="bulleted-list"><li style="list-style-type:disc">Plnia <strong>sociálnu funkciu</strong> (vzdelávanie, starostlivosť o zamestnancov, budovanie ľudského kapitálu, istota pracovného miesta)</li></ul><ul id="1ec0656d-3119-8005-b22e-fe707e3abf72" class="bulleted-list"><li style="list-style-type:disc">Produkujú <strong>tovary a služby </strong></li></ul><ul id="1ec0656d-3119-80dd-bd78-f5b4f9687eda" class="bulleted-list"><li style="list-style-type:disc">Prinášajú i<strong>novácie </strong></li></ul><ul id="1ec0656d-3119-80c1-9047-d3cafe3d4cfe" class="bulleted-list"><li style="list-style-type:disc">Využívajú <strong>modernú výrobu</strong> a i<strong>nformačné technológie </strong></li></ul><ul id="1ec0656d-3119-8007-b071-dd51f9d55e66" class="bulleted-list"><li style="list-style-type:disc"><strong>Prispôsobujú sa a zároveň ovplyvňujú rýchlo sa meniace prostredie </strong></li></ul><ul id="1ec0656d-3119-80bc-823d-dd1bb4b94e49" class="bulleted-list"><li style="list-style-type:disc">Riešia výzvu <strong>diverzity, etiky, koordinácie</strong> </li></ul><p id="1ed0656d-3119-80e7-a40d-d4c4c602a909" class="">
+</p><p id="1ed0656d-3119-80d1-9a24-c71d0dead770" class=""><em><strong><span style="border-bottom:0.05em solid">ÚLOHA organizovania</span></strong></em>: zyišiť pravdepodobnosť, že sa členovia organizacie budú správať cieľovo</p><p id="1ed0656d-3119-8060-89e9-dd9881943f74" class="">
+</p><p id="1ec0656d-3119-8055-ae6e-d1e9136312f6" class=""><strong>Uzavretý systém</strong> = nezávislý od vonkajšieho prostredia, nerealizuje s ním žiadnu interakciu, samostatný, nezávislý, slobodný, v praxi neexistuje (možno napr. sekty)</p><p id="1ec0656d-3119-80e0-bb27-c69eca144a62" class=""><strong>Otvorený systém</strong> = nevyhnutne musí interagovať s vonkajším prostredím, aby prežil, musí sa mu prispôsobiť, získava z neho zdroje (suroviny, noví zamestnanci, pôžička)</p><p id="1ec0656d-3119-8003-9988-c620630f7506" class="">
+</p><h2 id="1ec0656d-3119-802a-8e09-e2a455916a07" class="">FAKTORY EXTERNÉHO PROSTREDIA (na ktoré musí podnik reagovať)</h2><p id="1ec0656d-3119-802f-8d08-ff65f5c84628" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Priamy vplyv</strong></mark></mark> (organizácia s nimi komunikuje, každodenný kontakt, majú priamy vplyv na dosahovanie jej stanovených cieľov):</p><ul id="1ec0656d-3119-8091-b182-f22323e4c44b" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Priemysel</strong></mark> (sledovanie vývoja konkurencie, celého odvetvia, ostatné súvisiace odvetvia)</li></ul><ul id="1ec0656d-3119-8016-bb28-c546321734df" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Suroviny </strong></mark>(ktoré využíva na výrobu, vzťahy s dodávateľmi)</li></ul><ul id="1ec0656d-3119-8058-8c9d-e3baea68294a" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Faktor trhu </strong></mark>(správanie zákazníkov – súčasná a budúca , zmeny spotrebiteľského správania)</li></ul><ul id="1ec0656d-3119-8060-ae33-d531732c2dce" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Faktor ľudských zdrojov</strong></mark> (trh práce, pracovné agentúry, univerzity – zabezpečovanie zamestnancov)</li></ul><ul id="1ec0656d-3119-8066-aa1a-feecb3123cd3" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Medzinárodné prostredie </strong></mark>(vstup zahraničných firiem na trh/vstup podniku na zahraničný trh, vývoj menových kurzov)</li></ul><p id="1ec0656d-3119-8037-a295-f112a9409e56" class="">
+</p><p id="1ec0656d-3119-8019-8c1b-e8202d20ac0e" class="">
+</p><p id="1ec0656d-3119-80c0-906b-f2f93017f749" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Nepriamy vplyv</strong></mark></mark>:</p><ul id="1ec0656d-3119-804d-8171-faf82c6bfa3e" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Finančná oblasť</strong></mark> (akciové trhy, bankový sektor, úvery, investori)</li></ul><ul id="1ec0656d-3119-803d-bbe8-fe49b786a4c5" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Technológia </strong></mark>(zmeny v technológii výroby, podpora vedy a výskumu)</li></ul><ul id="1ec0656d-3119-8006-b204-e19a77bd8f6e" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Ekonomické podmienky </strong></mark></li></ul><ul id="1ec0656d-3119-80b5-a421-e52ff0ac0d0a" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Vláda</strong></mark> (daňový a odvodový systém, politická situácia)</li></ul><ul id="1ec0656d-3119-8045-8eba-d5a2d5ee28b8" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Sociokultúrna oblasť</strong></mark> (demografické ukazovatele, náboženstvo, spotrebiteľské a ekologické hnutia)</li></ul><p id="1ec0656d-3119-8052-b0f0-d0af894d30fa" class="">
+</p><h2 id="1ec0656d-3119-80a1-ad1d-e766456571a2" class="">KĽÚČOVÉ DIMENZIE ORGANIZÁCIE</h2><p id="1ec0656d-3119-80f4-8bcd-cdb99e4f1b12" class="">=podľa čoho charakterizujeme spoločnosť</p><p id="1ec0656d-3119-8050-9535-ef731fdd4539" class="">
+</p><p id="1ec0656d-3119-80ce-98d0-de6c40d241d3" class="">
+</p><p id="1ec0656d-3119-80d8-927f-fb94d582b3d0" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Formalizácia</strong></mark></mark></p><ul id="1ec0656d-3119-8026-8074-eebf7c8b00ee" class="bulleted-list"><li style="list-style-type:disc">Týka sa <strong>množstva písomných dokumentov</strong> v organizácii – nástroje na usmernenie činnosti</li></ul><p id="1ec0656d-3119-8061-b07d-f0571cbe6cdf" class=""><span style="border-bottom:0.05em solid">Patria sem</span>: <strong>štatutárne normy, organizačný poriadok, smernice</strong> (presné spôsoby vykonávania činností), <strong>príkazy</strong> (konkrétne úlohy, presné termíny, adresované nariadeným), <strong>pokyny, postupy </strong>(veľmi podrobný opis konkrétnej činnosti)</p><p id="1ec0656d-3119-8020-9e8c-e96a3ad9f45f" class=""><span style="border-bottom:0.05em solid">Výhody</span>: presne definované pravidlá, jasné, platné pre všetkých, vedie k poriadku, harmónii, efektívnosti, normy pomáhajú identifikovať a minimalizovať riziká, lepšia merateľnosť</p><p id="1ec0656d-3119-80a2-af9f-f97cf5dbea25" class=""><span style="border-bottom:0.05em solid">Nevýhody</span>: obmedzovanie kreativity iniciatívy, správnosť vykonania procesu dôležitejšia ako výsledok samotnej činnosti, zamestnanci nesamostatní, veľa pravidiel = neprehľadný systém</p><p id="1ec0656d-3119-807b-b77a-f9f8b8564a10" class="">
+</p><p id="1ec0656d-3119-807a-b09e-f751ee3151d2" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Špecializácia </strong></mark></mark></p><ul id="1ec0656d-3119-807f-9195-f859d73a8c4d" class="bulleted-list"><li style="list-style-type:disc">Do akej miery sú organizačné úlohy rozdelené do samostatných pracovných miest, deľba práce, <strong>zamestnanci vykonávajú malú, špecifickú úlohu</strong></li></ul><p id="1ec0656d-3119-80f9-b43f-d3ed0381c951" class=""><span style="border-bottom:0.05em solid">Výhody</span>: zamestnanec sa stane expertom v svojej oblasti, vyššia produktivita práce</p><p id="1ec0656d-3119-80b8-995d-d104d5a41442" class=""><span style="border-bottom:0.05em solid">Nevýhody</span>: hlboký a špecifický, no malý súbor zručností a znalostí, nízka flexibilita, ťažké nahradenie zamestnanca</p><p id="1ec0656d-3119-80d7-ab27-df66a55643dd" class="">
+</p><p id="1ec0656d-3119-8080-9791-fccb8777df21" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Centralizácia </strong></mark></mark></p><ul id="1ec0656d-3119-8054-8e77-f516eb50ac10" class="bulleted-list"><li style="list-style-type:disc">Vzťahuje sa na <strong>hierarchickú úroveň, ktorá má právomoc rozhodovať</strong> (rozhodovanie na najvyššej úrovni = centralizovaná, rozhodovanie na nižšej úrovni = decentralizovaná)</li></ul><p id="1ec0656d-3119-80b0-80bd-fc4235a1fb30" class=""><span style="border-bottom:0.05em solid">Výhody</span>: jednotnosť, konzistentnosť v rozhodovaní, jednoduchšia koordinácia, nižšie náklady na organizačnú štruktúru</p><p id="1ec0656d-3119-8039-968e-d74db5ab9785" class=""><span style="border-bottom:0.05em solid">Nevýhody</span>: veľký tlak na osobu pri moci, môže viesť k byrokracii, znižovanie kvality rozhodnutí (osoba nemôže byť odborník na všetky podnikové činnosti)</p><p id="1ec0656d-3119-80af-b2d8-c8f18119f99c" class="">
+</p><p id="1ec0656d-3119-8031-a430-cdcc76398371" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Hierarchia autority</strong></mark></mark></p><ul id="1ec0656d-3119-80ee-b172-eb5ebdfcf27e" class="bulleted-list"><li style="list-style-type:disc"><strong>Vzťahy nadradenosti a podriadenosti </strong></li></ul><ul id="1ec0656d-3119-801a-9496-ca98f1a1bbb5" class="bulleted-list"><li style="list-style-type:disc"><strong>Rozpätie riadenia</strong> – počet zamestnancov priamo podriadených jednému nadriadenému, ovplyvňuje tvar organizačných štruktúr<ul id="1ec0656d-3119-806b-9746-e469f2f39224" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Vysoké organizačné štruktúry</strong></mark> = úzky stupeň riadenia (málo ľudí), vysoký počet stupňov riadenia (bližší vzťah s priamo podriadeným, možnosť dôslednej kontroly, nákladné, sledovanie každého kroku svojich podriadených, ľudia s najväčším vplyvom sú vzdialení od “bojovníkov v prvej línii”)</li></ul><ul id="1ec0656d-3119-8057-8c10-e1f741f9e7f6" class="bulleted-list"><li style="list-style-type:circle"><mark class="highlight-yellow"><strong>Ploché organizačné štruktúry</strong></mark> = široké rozpätie riadenia, nízky počet stupňov riadenia (náročné na kontrolu, môže viesť k preťaženiu manažéra, zvýšená motivácia a autonómnosť podriadených)</li></ul></li></ul><p id="1ed0656d-3119-8084-bee5-fde7f72df842" class="">
+</p><p id="1ec0656d-3119-809d-8e2c-cd8170c08558" class=""><strong>Organizačná štruktúra </strong>- súbor prvkov(útvarov, pracovísk, oddelení) a vzťahov medzi nimi</p><h3 id="1ec0656d-3119-80bc-9cb0-d4a11c44bdd8" class="">Druhy vzťahov </h3><ul id="1ec0656d-3119-80a6-840b-e76b839894f4" class="bulleted-list"><li style="list-style-type:disc">vertikalný(nadriadenosť a podriadenosť)</li></ul><ul id="1ec0656d-3119-8069-8654-e2a4fa1e8d63" class="bulleted-list"><li style="list-style-type:disc">horizontalne (jednotky na jednej urovni)</li></ul><h1 id="1ec0656d-3119-80e7-9e3c-fb68d1c9b6b4" class="">HLAVNÉ TYPY ORGANIZAČNÝCH ŠTRUKTÚR</h1><h3 id="1ec0656d-3119-80d1-a15d-e54bd16080c2" class="">PODĽA UPLATŇOVANIA ROZHODOVACEJ PRÁVOMOCI </h3><p id="1ec0656d-3119-8085-8e1a-cc9321954e27" class="">Predstavuje voľnosť pri rozhodovaní, súvisí so vzťahmi nadradenosti a podradenosti</p><div id="1ec0656d-3119-80ef-8e95-dc4618be913e" class="column-list"><div id="1ec0656d-3119-8059-a8e1-f0b397bf07cf" style="width:100%" class="column"><p id="1ec0656d-3119-80c2-84c1-d20fea6369d9" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Líniová organizačná štruktúra </strong></mark></mark></p><p id="1ec0656d-3119-806a-8022-d6f61d3b4300" class="">Najstarší typ, v súčasnosti prirodzene prekonaná </p><p id="1ec0656d-3119-80d0-ac6d-e63ef9bb96a7" class=""><span style="border-bottom:0.05em solid">Charakteristika</span>: skladá sa len z líniových útvarov, nemá špecializované pracoviská, nadriadený dáva príkazy len bezprostredne podriadeným, podriadený dostáva príkazy len od jedného vedúceho, uplatnenie pri riadení malých podnikov, zväčša majiteľovi podliehajú výkonní zamestnanci</p><p id="1ec0656d-3119-80a4-929e-dc2b3412346b" class=""><span style="border-bottom:0.05em solid">Výhody</span>: jasné vzťahy nadradenosti a podradenosti, jasná, čitateľná štruktúra, super pre malé podniky</p><p id="1ec0656d-3119-8011-ab73-f83249f885b0" class=""><span style="border-bottom:0.05em solid">Nevýhody</span>: veľké zaťaženie vedúceho, žiadna deľba práce v riadení – brzdí rozvoj, choroba vedúceho môže zničiť celý podnik</p></div><div id="1ec0656d-3119-8042-b5ec-c33fd1f977cc" style="width:100%" class="column"><figure id="3123f2d9-4abc-422e-967e-d923af005135" class="image"><a href="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/ee4aad94-69e2-4bbb-860b-e159cb90e1ec.png"><img style="width:890.6750392464678px" src="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/ee4aad94-69e2-4bbb-860b-e159cb90e1ec.png"/></a></figure><p id="9970e186-c9c0-4b7d-8167-0230d9b632b3" class="">
+</p></div></div><p id="1ec0656d-3119-80bd-b0cb-c3e1b3a968ca" class="">
+</p><p id="1ec0656d-3119-8017-b3bf-f184d290a81f" class="">
+</p><p id="1ec0656d-3119-80f4-bd20-c5162f441484" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Líniovo-štábna organizačná štruktúra </strong></mark></mark></p><p id="1ec0656d-3119-80f3-ae57-c301ee59f8c3" class="">Veľmi rozšírený typ</p><div id="1ec0656d-3119-8030-bc67-c66f0a46a235" class="column-list"><div id="1ec0656d-3119-806d-904c-e1803f04ae4c" style="width:50%" class="column"><p id="1ec0656d-3119-800d-9012-ddc9809ec185" class=""><span style="border-bottom:0.05em solid">Charakteristika</span>: základom je líniová štruktúra, na cele je líniový vedúci, ktorí komplexne riadi organizačnú jednotku, má plnú zodpovednosť, využíva na kvalifikovaný výkon svojej činnosti pomoc štábnych útvarov = odborníci z rozličných oblastí (admin. činnosti, odborné poradenstvo – právne, daňové), tí podporujú, zefektívňujú činnosť, zabezpečujú kvalitu, ale nenesú zodpovednosť za výkon činností jeho podriadených</p></div><div id="1ec0656d-3119-8031-b66d-d50104f3ddaa" style="width:50%" class="column"><figure id="1ec0656d-3119-804c-87c6-ea169ab64023" class="image"><a href="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/image.png"><img style="width:341.9921875px" src="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/image.png"/></a></figure></div></div><p id="1ec0656d-3119-8006-9fa4-d9a82f00b639" class=""><span style="border-bottom:0.05em solid">Výhody</span>: zabezpečenie odbornosti v riadení, čiastočné odbremenenie vedúcich, zachovanie jednoty riadenia organizácie, dobre funguje v stabilnom prostredí</p><p id="1ec0656d-3119-8067-816b-fb25cfbd0faf" class=""><span style="border-bottom:0.05em solid">Nevýhody</span>: v nestálom prostredí nie je schopná efektívne reagovať na rýchlo sa meniace podmienky, štáb nezodpovedá priamo za svoje rozhodnutie</p><p id="1ec0656d-3119-8020-9c69-c9261d672646" class="">
+</p><p id="1ec0656d-3119-80a2-aebd-ce0e954fec4d" class="">
+</p><h3 id="1ec0656d-3119-806b-a09a-d53744f2e10f" class="">PODĽA SPÔSOBU ZOSKUPOVANIA ČINNOSTÍ, ĽUDÍ, VECNÝCH PROSTRIEDKOV</h3><div id="1ec0656d-3119-807d-a23f-cf1535a028f3" class="column-list"><div id="1ec0656d-3119-800e-abc6-ee1a787352b1" style="width:100%" class="column"><p id="1ec0656d-3119-80cc-9323-ef9fc4e3892b" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Funkcionálna organizačná štruktúra</strong></mark></mark></p><p id="1ec0656d-3119-8065-aa5c-dfd344db5732" class=""><span style="border-bottom:0.05em solid">Charakteristika</span>: formovanie jednotlivých útvarov podľa hlavných funkcií podniku, tie sa ďalej vnútorne rozčleňujú, vysoko centralizované – jasné vedenie smerom zhora nadol, koncentrácia rozhodovacích právomocí na vrchole hierarchie (napr. útvar riadenia ľudských zdrojov, výskum a vývoj, financie)</p><p id="1ec0656d-3119-8055-8bb2-ef54df0e11e3" class=""><span style="border-bottom:0.05em solid">Výhody</span>: úspory z rozsahu, efektívna pri stredne veľkých podnikov, 1 (málo produktov), úzko špecifické</p><p id="1ec0656d-3119-80c1-81d4-d9cab6f5ce01" class=""><span style="border-bottom:0.05em solid">Nevýhody</span>: neschopnosť reagovať na zmeny z vonkajšieho prostredia, hromadenie problémov na vrchu pyramídy (vysoká centralizácia), nižšia flexibilita, miera inovácií, malá zainteresovanosť zamestnancov na celopodnikových cieľov, ciele ich funkčného útvaru sú pre nich dôležitejšie, náročná horizontálna koordinácia </p></div><div id="1ec0656d-3119-80fa-becf-e299035bd292" style="width:100%" class="column"><figure id="1ec0656d-3119-809c-b6eb-ce525446c645" class="image"><a href="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/24ff05c4-2264-420f-ba7c-64eb125b241e.png"><img style="width:384px" src="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/24ff05c4-2264-420f-ba7c-64eb125b241e.png"/></a></figure><p id="1ec0656d-3119-80a4-8eae-f11544317655" class="">
+</p></div></div><div id="1ec0656d-3119-801c-ba6a-ca2fa5ece0c6" class="column-list"><div id="1ec0656d-3119-80b6-8b97-df3f40fa7426" style="width:100%" class="column"><p id="1ec0656d-3119-8020-b385-d42e51f405ec" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Divízna organizačná štruktúra </strong></mark></mark></p><p id="77b66089-5473-413d-8925-7ea45f2a8758" class="">Vznik bol spätý s potrebou nových prístupov v organizačnej štruktúre podnikov – lebo sa začali rozrastať, diverzifikácia aktivít</p><p id="6865c01c-55fc-4f1f-968f-e402bc742677" class=""><span style="border-bottom:0.05em solid">Charakteristika</span>: forma decentralizovaného riadenia, vytváranie divízií = samostatná ekonomická jednotka, značná rozhodovacia právomoc, bez právnej subjektivity, v rámci tejto jednotky sa riešia všetky otázky, ktoré súvisia s príslušným: výrobkom, zákazníkom, územím, lepšia kalkulácia nákladov, výnosov jednotlivých divízií<div class="indented"><ul id="1ec0656d-3119-81a9-a085-e2a68668e494" class="bulleted-list"><li style="list-style-type:disc">Podľa<strong> výrobkov </strong></li></ul><ul id="1ec0656d-3119-81f4-8634-fa07db5f5c17" class="bulleted-list"><li style="list-style-type:disc">Podľa <strong>zákazníkov</strong></li></ul><ul id="1ec0656d-3119-81ad-ae0e-ed71dc250d53" class="bulleted-list"><li style="list-style-type:disc">Podľa <strong>územia</strong> </li></ul></div></p><p id="1ed0656d-3119-8043-8df1-c752aa5f85f6" class="">
+</p><p id="db12df4f-9cb5-4b3c-b5a2-fe8086845cbe" class="">Výhody:</p><ul id="1ed0656d-3119-80ea-9b9d-c6283292da2f" class="bulleted-list"><li style="list-style-type:disc">lepšia kalkulácia nákladov a výnosov jednotlivých divízií</li></ul><p id="1ed0656d-3119-80e1-8c57-dbbadfc994e4" class="">
+</p></div><div id="1ec0656d-3119-806f-bd1b-e8502e92135c" style="width:100%" class="column"><figure id="fddefd9e-0493-46d8-b365-96e8ef20c672" class="image"><a href="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/dc031ea7-0d60-4e8a-9f4e-a440a8672884.png"><img style="width:336px" src="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/dc031ea7-0d60-4e8a-9f4e-a440a8672884.png"/></a></figure><figure id="40cd9e98-b13e-4c9c-a8e4-f372822179e1" class="image"><a href="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/1e919fbf-c2c2-4f5e-b9f6-6c15e93754cd.png"><img style="width:336px" src="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/1e919fbf-c2c2-4f5e-b9f6-6c15e93754cd.png"/></a></figure></div></div><p id="1ec0656d-3119-807b-a3e7-dd0ac7fe45ce" class="">
+</p><p id="1ec0656d-3119-80ab-980f-ebb0a2c5c312" class="">
+</p><p id="1ec0656d-3119-800d-a44b-cd6afebb29ee" class="">
+</p><div id="1ec0656d-3119-804d-9e8e-e97e02f8e1d0" class="column-list"><div id="1ec0656d-3119-80e1-b70c-f9883ec43897" style="width:100%" class="column"><p id="1ec0656d-3119-80d5-8791-c13ddef0eda7" class=""><mark class="highlight-yellow"><mark class="highlight-yellow_background"><strong>Maticová štruktúra</strong></mark></mark></p><p id="1ec0656d-3119-8062-8219-d1e2a40cee17" class="">Spojenie výhod divíznej a funkcionálnej štruktúry</p><p id="1ec0656d-3119-805f-8756-c515b934c9b7" class=""><span style="border-bottom:0.05em solid">Charakteristika</span>: horizontálna úroveň = manažéri produktov, vertikálna úroveň = manažéri jednotlivých funkčných oblastí, majú rovnakú právomoc a zamestnanci podliehajú dvojitej podriadenosti</p><p id="1ec0656d-3119-80b6-bc99-dc533e81a8e4" class=""><span style="border-bottom:0.05em solid">Výhody</span>: efektívne využitie zdrojov, pružnosť, flexibilné zdieľanie ľudských zdrojov, vhodné na zložité rozhodnutia, pôsobenie v nestabilnom prostredí. Je dobrá pre projektové štruktury, oblasť technickej prípravy, tímovu prácu.</p><p id="1ec0656d-3119-8082-90a3-f96fa874505a" class=""><span style="border-bottom:0.05em solid">Nevýhody</span>: môžu vznikať konflikty z dôvodu dvojitej podriadenosti, dualita v riadení, náročné na určenie limitov právomocí a zodpovednosti, vyžaduje vysokú intelektuálnu úroveň zamestnancov na riešenie prípadných konfliktov (špeciálne školenia)</p></div><div id="1ec0656d-3119-80dd-8698-dbd10b38a0de" style="width:100%" class="column"><p id="1ec0656d-3119-80ca-901e-df190045199f" class="">
+</p><figure id="72f98f47-b404-4616-a5ec-99e98bfa7e3d" class="image"><a href="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/4d563c22-1744-4ef8-a105-b0e37a2882ec.png"><img style="width:528px" src="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/4d563c22-1744-4ef8-a105-b0e37a2882ec.png"/></a></figure><p id="1ec0656d-3119-8045-847a-fa208b55d0e7" class="">
+</p></div></div><p id="1ec0656d-3119-8045-978f-ececbf7eef85" class="">
+</p><p id="1ed0656d-3119-80f5-972f-fac3e56427e0" class="">
+</p><p id="1ec0656d-3119-8039-a654-d4803bce16f9" class="">
+</p><h2 id="1ec0656d-3119-801d-86fe-f90894be5a91" class="">NOVÉ TRENDY V ORGANIZOVANÍ</h2><h3 id="1ed0656d-3119-8093-ba06-ee4f6b3fb7d3" class="">3 fundamentalné vzťahy medzi organizaciami:</h3><ol type="1" id="1ed0656d-3119-8077-93d1-f548b1fa2b6e" class="numbered-list" start="1"><li><mark class="highlight-yellow_background"><strong>Volný trh</strong></mark> (=medzi nezávislými subjektmi, ktorí medzi sebou obchodujú na základe ponuky a dopytu, <span style="border-bottom:0.05em solid">tranzakcie</span> nakupu a predaja medzi organizaciami)</li></ol><ol type="1" id="1ed0656d-3119-80e1-81e6-c6ea9aef9c37" class="numbered-list" start="2"><li><mark class="highlight-yellow_background"><strong>Hierarchická organizácia </strong></mark>(=vzťah, kde jedna organizácia podriadi druhú – buď formálne (vlastníctvom), alebo riadením.<p id="1ed0656d-3119-8002-91e9-c9d760358967" class="">Rozhodovanie je centralizované – nadriadená organizácia určuje pravidlá, štandardy, ciele. korporácie, holdingy alebo štátne štruktúry, kde existuje kontrola zhora nadol.)</p></li></ol><ol type="1" id="1ed0656d-3119-80ce-a929-cc78a92cffe3" class="numbered-list" start="3"><li><mark class="highlight-yellow_background"><strong>Medziorganizačné vzťahy</strong></mark><mark class="highlight-yellow_background"> </mark>(=Spolupráca rovnocenných organizácií, ktoré majú spoločný cieľ alebo záujem.<p id="1ed0656d-3119-8016-82d3-fb19ea2c2db1" class="">Vzťahy sú na báze dôvery, koordinácie a partnerstva, nie príkazov. Strategické aliancie, joint ventures, klastre, partnerstvá, napr. medzi výskumnými centrami a firmami., sieťové organizacie, virtualné organizacie, outsourcing)</p></li></ol><ul id="1ed0656d-3119-8054-b2b3-f44483862c8b" class="toggle"><li><details open=""><summary>popis druhov <mark class="highlight-default"><mark class="highlight-default_background"><strong>Medziorganizačné vzťahy </strong></mark></mark><mark class="highlight-default"><mark class="highlight-default_background">(klastre,joint venture, aliancie)</mark></mark></summary><p id="1ed0656d-3119-80d3-8fd7-ff39b72b5d65" class=""><mark class="highlight-red"><mark class="highlight-red_background"><strong>Joint Venture</strong></mark></mark>- Spoločnosť vytvorená dvoma alebo viacerými firmami, ktoré do nej vkladajú kapitál, zdroje alebo know-how a <strong>spoločne ju vlastnia a riadia</strong>. Vzníka ako <strong>nový právny subjekt</strong>, oddelený od materských firiem</p><p id="1ed0656d-3119-8089-98d7-e1c0858f4eff" class=""><strong>Príklad:</strong></p><ul id="1ed0656d-3119-80c6-8728-dd2e6b101392" class="bulleted-list"><li style="list-style-type:disc"><strong>Sony Ericsson</strong> – spoločný podnik medzi Sony (Japonsko) a Ericsson (Švédsko).</li></ul><ul id="1ed0656d-3119-8086-aa08-e9a08cf64c4d" class="bulleted-list"><li style="list-style-type:disc"><strong>BMW a Toyota</strong> – joint venture na vývoj vodíkového pohonu.</li></ul><p id="1ed0656d-3119-8028-b979-fbb57d5db494" class="">
+</p><p id="1ed0656d-3119-800c-bd18-fc80cd31e6e9" class=""><br/><br/><mark class="highlight-red"><mark class="highlight-red_background"><strong>Klastre</strong></mark></mark> - <strong>Geografická koncentrácia</strong> navzájom prepojených firiem, dodávateľov, výskumných inštitúcií a podporných organizácií <strong>v danom odvetví</strong>. Môžu byť priemyselné (napr. automobilový klaster), technologické alebo výskumné.</p><p id="1ed0656d-3119-8081-ba86-fc2eda608bbd" class=""><strong>Príklad:</strong></p><ul id="1ed0656d-3119-80cb-b2cd-ebba9cc87c7b" class="bulleted-list"><li style="list-style-type:disc"><strong>Silicon Valley (USA)</strong> – technologický klaster.</li></ul><ul id="1ed0656d-3119-8069-9f79-c1f2583d42cc" class="bulleted-list"><li style="list-style-type:disc"><strong>Automobilový klaster západné Slovensko</strong> – VW, Kia, PSA + dodávatelia.</li></ul><p id="1ed0656d-3119-80d1-9408-d6b5b9e02dd7" class="">
+</p><p id="1ed0656d-3119-80d4-bfbb-f84f08fb9d53" class=""><strong><br/><br/></strong><mark class="highlight-red"><mark class="highlight-red_background"><strong>Strategické aliancie- </strong></mark></mark>Dohoda o spolupráci medzi dvoma alebo viacerými firmami, ktoré si však zachovávajú právnu a organizačnú samostatnosť. </p><ul id="1ed0656d-3119-80b3-8606-dcf5799805ed" class="bulleted-list"><li style="list-style-type:disc">Spolupracujú v konkrétnej oblasti: výskum, vývoj, výroba, marketing, distribúcia.</li></ul><ul id="1ed0656d-3119-8056-a366-c419a07258a7" class="bulleted-list"><li style="list-style-type:disc">Je to <strong>flexibilnejšia forma než joint venture</strong>, bez vytvorenia novej spoločnosti.</li></ul><p id="1ed0656d-3119-80af-a9aa-ce247ab79bd6" class=""><strong>Príklad:</strong></p><ul id="1ed0656d-3119-8021-b7a1-f658a8d9549e" class="bulleted-list"><li style="list-style-type:disc"><strong>Star Alliance</strong> – aliancia leteckých spoločností (Lufthansa, United, ANA...).<p id="1ed0656d-3119-807e-ae19-cc92f45d8f66" class=""><strong>Spotify + Uber</strong> – prepojenie aplikácií pre hudbu počas jazdy.</p><figure id="1ed0656d-3119-808f-93f6-cdb29e82dbc5" class="image"><a href="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2025-05-08_%D0%BE_12.03.54.png"><img style="width:384px" src="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2025-05-08_%D0%BE_12.03.54.png"/></a></figure><figure id="1ed0656d-3119-8074-bc86-eb96649b15df" class="image"><a href="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2025-05-08_%D0%BE_11.42.46.png"><img style="width:673.96875px" src="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2025-05-08_%D0%BE_11.42.46.png"/></a></figure></li></ul></details></li></ul><p id="1ed0656d-3119-80e2-ad1a-f97f35b1daad" class="">
+</p><p id="1ed0656d-3119-80e8-ad92-c528a74b4065" class="">
+</p><p id="1ec0656d-3119-804f-9ea9-f994301f268e" class=""><strong>Hierarchická spoločnosť </strong>–<span style="border-bottom:0.05em solid"> ak chce rásť, využiť príležitosti na trhu a rozširovať svoje pole pôsobnosti, môže</span>: </p><ul id="1ec0656d-3119-8085-a5a7-e1c15841ab76" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Fúzia</strong></mark> = splynutie s inou organizáciou, vytvorenie nového právneho subjektu, novej hierarchie</li></ul><ul id="1ec0656d-3119-80a0-98fa-d8a2a9774eae" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow"><strong>Akvizícia</strong></mark> = odkúpenie spoločnosti, prevzatie riadenia </li></ul><p id="1ec0656d-3119-80a1-a072-e11b8a50fca4" class="">Oba spôsoby sú <strong>finančne a časovo náročné </strong>(dokým dôjde k ich realizácii môže byť situácia na trhu výrazne iná)</p><p id="1ec0656d-3119-8097-bc3a-eec40461f6ca" class="">
+</p><p id="1ec0656d-3119-802d-9b89-f55813245b37" class=""><mark class="highlight-yellow"><strong>Medziorganizačné vzťahy</strong></mark> – predstavujú prechod od byrokratických hierarchických organizácií k voľnému trhu, vznik organizačných usporiadaní medzi podnikmi, pričom sa každý podnik zameriava len na svoje kľúčové aktivity, ostatné nakupuje z externého prostredia, podniky medzi sebou zdieľajú zdroje, rýchlejší prenos informácií a znalostí, <span style="border-bottom:0.05em solid">patria sem:</span> <strong>strategické aliancie, joint venture, outsourcing, sieťové a virtuálne organizácie </strong></p><p id="1ec0656d-3119-806c-b500-dced86c970f8" class="">
+</p><p id="1ec0656d-3119-806d-aca6-d48094ea2e26" class="">
+</p><h3 id="1ec0656d-3119-8006-a227-d2404436c3ce" class="">SIEŤOVÁ ORGANIZÁCIA(network)</h3><p id="1ec0656d-3119-80d0-b364-d2dd849b1104" class="">Už sa vo svete stabilizovali</p><div id="1ed0656d-3119-8023-9f85-de2515bf7b46" class="column-list"><div id="1ed0656d-3119-8036-be20-dcdd5b7cf741" style="width:50%" class="column"><p id="1ec0656d-3119-8092-8a85-e41c47f18c1e" class=""><span style="border-bottom:0.05em solid">Kedy vzniká</span>: podniky si sami nedokážu zabezpečiť dostatok zdrojov, výkon svojich funkcií, potrebné znalosti, navzájom sú prepojené a podieľajú sa na realizácii výrobku alebo služby . Tlak na sociálne a ekonomické väzby medzi jednotlyvýmoí partnermi(zväčša dklodobe, napr.outsourcing)</p><p id="1ed0656d-3119-80ec-a7ef-e56cbc6283cb" class=""><span style="border-bottom:0.05em solid">Príklad</span>: výroba auta (jednotlivé komponenty sú vyrábané v rôznych podnikoch vo svete, aktivity koordinuje podnik, ktorý to auto vyrába = sieťový)</p></div><div id="1ed0656d-3119-80b6-a060-f06a08445583" style="width:50%" class="column"><figure id="1ed0656d-3119-80b8-bf74-cff0880bdbd1" class="image"><a href="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2025-05-08_%D0%BE_12.02.42.png"><img style="width:528px" src="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2025-05-08_%D0%BE_12.02.42.png"/></a></figure></div></div><p id="1ec0656d-3119-80da-a95b-c00b31f3caab" class="">
+</p><h3 id="1ec0656d-3119-8086-965e-cc8d91af8a0a" class="">VIRTUÁLNA ORGANIZÁCIA</h3><p id="1ec0656d-3119-8051-8683-c31cf582bfa5" class="">Nadstavba sieťovej </p><p id="1ec0656d-3119-8071-a930-cddeaf265970" class=""><span style="border-bottom:0.05em solid">Charakteristika</span>: nová forma, dočasné spojenie podnikov pre splnenie určitého podnikateľského cieľa, po jeho realizácii je rozpustená, využívanie informačných a komunikačných technológií, nemá konkrétnu štruktúru, funguje nezávisle od priestoru a času, môže mať aj digitálnu štruktúru. založená na spolupráci rôznych subjektov (firiem, freelancerov, tímov) pomocou informačných a komunikačných technológií (IKT), využíva outsourcing, cloudové služby, teleprácu, online riadenie tímov a virtuálnu komunikáciu</p><p id="1ec0656d-3119-80e5-94f8-dbc12a8cb1e5" class=""><span style="border-bottom:0.05em solid">Výhody</span>: nákladovo efektívna, úspora času, zvýšenie kvality, flexibility, diverzifikácia rizika </p><p id="1ec0656d-3119-80ff-93d2-d1e9b5dcca8d" class=""><span style="border-bottom:0.05em solid">Nevýhody</span>: náročná na koordináciu aktivít, komunikáciu (absencia neverbálnej zložky), relatívne nestabilné prostredie pre zamestnancov, ťažké budovať firemnú kultúru a lojalitu</p><p id="1ec0656d-3119-8054-ad24-d856aee17b04" class="">Havný cieľ: splniť požiadavky zákazníkov, ako-to je už na pracovníkoch</p><p id="1ec0656d-3119-80ed-92f7-d761c58fe466" class="">
+</p><h3 id="1ec0656d-3119-80fb-a283-f76cfd4fd4e2" class="">VIRTUÁLNA SIEŤOVÁ ORGANIZÁCIA</h3><p id="1ec0656d-3119-80bd-9cd0-ccc69a1acc16" class=""><span style="border-bottom:0.05em solid">Charakteristika</span>: plochá štruktúra bez hierarchie, podnik využíva na zabezpečenie svojich funkcií širokú sieť externých dodávateľov, na komunikáciu sú využívané informačné a komunikačné technológie, extrémna decentralizácia, spontánne prepojenie členov organizácie za účelom dosiahnutia spoločného cieľa, nezdieľajú ten istý fyzický priestor, výsledky sa následne integrujú do jedného celku</p><p id="1ec0656d-3119-80ff-b490-c1bff724e806" class=""><span style="border-bottom:0.05em solid">Výhody</span>: veľká flexibilita, manažment sa môže venovať strategickým otázkam, zdieľanie vedomostí a skúseností, vysoká špecializácia zamestnancov, vysoká efektivita pracovného výkonu</p><p id="1ec0656d-3119-80ca-818c-ed28b20da275" class=""><span style="border-bottom:0.05em solid">Nevýhody</span>: strata kontroly, náročná na koordináciu aktivít, komunikáciu, riešenie sporov, nízka lojalita vlastných zamestnancov, slabá podniková kultúra, zamestnanci môžu pociťovať sociálnu izoláciu (keď pracujú z domu), sťažená komunikácia, problematika virtuálneho prostredia (nevyhovuje každému)</p><ul id="1ed0656d-3119-80d9-99c9-cf217dfe2d90" class="toggle"><li><details open=""><summary>príklady</summary><p id="1ed0656d-3119-80f7-9a7d-fbbc642dadbb" class=""><em><strong>Príklad</strong></em>: Vývoj videohry. </p><p id="1ed0656d-3119-80ab-8f11-ea236950eadc" class=""><strong>Core tím</strong>: malé indie štúdio má 5 interných členov (producent, dizajnér, projektový manažér). </p><p id="1ed0656d-3119-8018-b84d-e70c2b893bf6" class=""><strong>Externí partneri</strong>:</p><ul id="1ed0656d-3119-800c-b8f7-f94437699ddb" class="bulleted-list"><li style="list-style-type:disc">animátor z Česka,</li></ul><ul id="1ed0656d-3119-804d-b785-d419544cfe79" class="bulleted-list"><li style="list-style-type:disc">hudobný skladateľ z USA,</li></ul><ul id="1ed0656d-3119-8004-9764-e630d6aa6142" class="bulleted-list"><li style="list-style-type:disc">marketingová agentúra z Poľska,</li></ul><ul id="1ed0656d-3119-8074-8e47-e12c7eb4a4a5" class="bulleted-list"><li style="list-style-type:disc">prekladateľské štúdio zo Španielska,</li></ul><ul id="1ed0656d-3119-8056-a4f7-d83963342b6e" class="bulleted-list"><li style="list-style-type:disc">tester z Indie.</li></ul><p id="1ed0656d-3119-807e-9721-febc472e9292" class="">Všetci spolu komunikujú <strong>online</strong>, nemajú spoločnú kanceláriu, sú naviazaní <strong>zmluvne alebo projektovo</strong>. Keď sa hra dokončí, spolupráca sa rozpadne.<br/><br/></p><figure id="1ed0656d-3119-8018-9ab7-c92c7f8a5924" class="image"><a href="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2025-05-08_%D0%BE_12.23.59.png"><img style="width:729.984375px" src="8%20Organizovanie,%20organizac%CC%8Cne%CC%81%20s%CC%8Ctruktu%CC%81ry%201ec0656d31198035b31bc63e0c94f15b/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2025-05-08_%D0%BE_12.23.59.png"/></a></figure></details></li></ul><p id="1ed0656d-3119-80b7-ab8a-df755598a9c9" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+<a href="/index.html" class="back-to-home">Back to Initial Page</a>
+<script src="securePage.js"></script>
+<script src="/verifyIP.js"></script>
+</body></html>

@@ -1,0 +1,719 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>13. Kontrolovanie</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+       .back-to-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1ed0656d-3119-804c-877f-ec6cfc4b4d7e" class="page sans"><header><h1 class="page-title">13. Kontrolovanie</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Created</th><td><time>@May 8, 2025 2:50 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg aria-hidden="true" role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(71, 70, 68, 0.6);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><p id="1ed0656d-3119-80b6-b31b-d8d5947eb77d" class="">Kontrola-jednorazový akt</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1ed0656d-3119-806a-afa9-d67eafb96ce7"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="1ed0656d-3119-80eb-9a83-c8218f538ba7" class=""><mark class="highlight-yellow_background"><strong>Kontrolovanie</strong></mark> = sústavná činnosť, neustale prebiehajuci proces navrhovania štandartov,merania výkonu a vykonávania opatrení na zabezpečenie učinnosti a efektivnosti aktivít podiku.<br/>Kontrolu a kontrolovanie vykonavajú rôzné osoby<br/></p></div></figure><p id="1ed0656d-3119-800b-bd19-f79323d434b0" class="">Hlavné ciele v kontrolovaní:</p><ul id="1ed0656d-3119-8018-96ca-ed16c260b331" class="bulleted-list"><li style="list-style-type:disc">robiť plany efektívnymi</li></ul><ul id="1ed0656d-3119-804c-8575-c6f78e99d3e2" class="bulleted-list"><li style="list-style-type:disc">zabezpečovať konzistentnosť(nepretržitosť) organiačných aktivit</li></ul><ul id="1ed0656d-3119-807b-835b-d1d074d035aa" class="bulleted-list"><li style="list-style-type:disc">poskytovať spätnu väzbu o stave</li></ul><ul id="1ed0656d-3119-8006-824f-e564cb5171ef" class="bulleted-list"><li style="list-style-type:disc">pomoc pri rozhodovaní</li></ul><p id="1ed0656d-3119-801d-aa3b-e23400c4b923" class="">Úloha kontrolného procesu: identifikovať dosiahnutý stav+odstraniť nedostatky</p><p id="1ed0656d-3119-80da-83a7-f7a03265002b" class="">
+</p><h3 id="1ed0656d-3119-8047-a6c0-c70dd63a92d3" class="">Subjekty kontrolovania</h3><ul id="1ed0656d-3119-80bc-8a37-c16578986781" class="bulleted-list"><li style="list-style-type:disc">individuálne( manažer, poverený zamestnanec)</li></ul><ul id="1ed0656d-3119-80e1-8277-e1e973b53671" class="bulleted-list"><li style="list-style-type:disc">kolektívne (predstavenstvo, dozorná rada)</li></ul><p id="1ed0656d-3119-8040-924b-f1366a62f9b9" class=""><strong>Objekt </strong>kontrolovania= čo/koho kontrolujeme</p><p id="1ed0656d-3119-80a4-93e4-c85847a60b94" class=""><strong>Predmet</strong> = čo presne kontrolujeme v objekte (proces, výsledky)</p><p id="1ed0656d-3119-8079-9b30-cd687cda9079" class="">
+</p><h3 id="1ed0656d-3119-805d-a1a0-ff3a8ccad1a3" class="">Teoria kontrolovania(periódy)</h3><ol type="1" id="1ed0656d-3119-80b4-a3ef-e7ec78b334ad" class="numbered-list" start="1"><li>pravky teorie kontrolovania (pred rokom 1868)</li></ol><ol type="1" id="1ed0656d-3119-800d-8887-cf08ed01053e" class="numbered-list" start="2"><li>primitívna perióda teórie kontrolovania (1868-ranné 20.stor)</li></ol><ol type="1" id="1ed0656d-3119-80ce-aaa5-f1277551e622" class="numbered-list" start="3"><li>klasicka perióda (Ranné 20.-1960)</li></ol><ol type="1" id="1ed0656d-3119-80ee-98d7-d12994542994" class="numbered-list" start="4"><li>moderná (1960-sučastnosť)</li></ol><p id="1ed0656d-3119-805a-a435-f2c6e2cbe635" class="">
+</p><h2 id="1ed0656d-3119-8010-ad8f-e5aa1296303a" class="">Prístupy ku kontrolovaniu</h2><ul id="1ed0656d-3119-8001-8f00-c6d2cfbc7bc9" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange"><mark class="highlight-yellow_background"><strong>Regulačný</strong></mark></mark> (=dôraz na realizačnu etapu riadenia. predpokladá že planovanie bolo bezchybné. kontrola zameraná na <strong>nápravu odchýlok</strong> počas realizácie. Vhodný tam kde je dobré prvotné planovanie)</li></ul><ul id="1ed0656d-3119-809e-b442-d0fb6ce44602" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange"><mark class="highlight-yellow_background"><strong>Negačný</strong></mark></mark> (=predpokladá že nebolo chyb v stanovení cieľov,planovaní, nepripušťa odhylky od štandartov. Použitie: gecsie represivných zložiek a krízové situacia</li></ul><ul id="1ed0656d-3119-8021-8578-ccfcee744054" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange"><mark class="highlight-yellow_background"><strong>profesijný</strong></mark></mark> (=v organizacie existuju špesicalizované rpofesie/utvari na kontrolu: auditor, kontrolér,revízor, inšpektor)Kontrolovanie je chapene ako jednorazový akt zabezpečený iným špecialistom, a nie pravidelná činnosť)</li></ul><ul id="1ed0656d-3119-80db-b083-fd76e5ca479e" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange"><mark class="highlight-yellow_background"><strong>informačný </strong></mark></mark>(=potrebujeme iba pozorovať a zisťovať, nemame zhodnotiť stav, ani navrhnuť/uskutočniť korekciu. Podstata: ziskať informaciu a posunuť ju ďalej)</li></ul><ul id="1ed0656d-3119-80f1-b839-c2abd4b0c880" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange"><mark class="highlight-yellow_background"><strong>represívny</strong></mark></mark> (=sustreďovanie na objavenie vinníka+sankcionovanie→vyvolava pocit strachu)</li></ul><ul id="1ed0656d-3119-80ad-aa9e-dd368bd1b2ea" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange"><mark class="highlight-yellow_background">výchovný</mark></mark> (=opačný l negačnemu a represívnemu, zmyse-ukazať objektu na nedostatky a možnosti ako ich odstraniť</li></ul><ul id="1ed0656d-3119-8032-a127-deb601a9e8a8" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange"><mark class="highlight-yellow_background"><strong>komplexný</strong></mark></mark> (všetko potrochu)</li></ul><p id="1ed0656d-3119-8066-8ff0-e92ad9ecf6ba" class="">
+</p><figure id="1ed0656d-3119-80a0-b2ad-d480d1d224d3" class="image"><a href="13%20Kontrolovanie%201ed0656d3119804c877fec6cfc4b4d7e/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2025-05-08_%D0%BE_15.38.50.png"><img style="width:432px" src="13%20Kontrolovanie%201ed0656d3119804c877fec6cfc4b4d7e/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA_%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0_2025-05-08_%D0%BE_15.38.50.png"/></a></figure><h2 id="1ed0656d-3119-807d-951f-c93ac6096a52" class="">Druhy kontrolovania</h2><ul id="1ed0656d-3119-80dc-9cb1-eb048f4f1128" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange"><mark class="highlight-yellow_background"><strong>Formalné kontrolovanie </strong></mark></mark>(=dana postavením pracovníka/útvaru podľa hierarchie=vyplýva z organizač.noriem. Dbajú na dodžanie štruktúry, zásad a postupov. Ramce formalných kontrol sú stanovené pisomne vedením)</li></ul><ul id="1ed0656d-3119-8041-92e6-e6cd679b2bc0" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange"><mark class="highlight-yellow_background"><strong>Neformalné</strong></mark></mark>(= nepisane pravidla, musi byť v sulade s cieľmi organizacie. Vyplýva zo spravania zamestnancov, je ovplyvnene socio-kulturn.faktormi) Druhy neformalnej kontroly podľa urovne agregovania:<ol type="a" id="1ed0656d-3119-8056-bdf8-c3048397d211" class="numbered-list" start="1"><li>kultúrna kontrola (pomocou noriem socialnej interakcie)</li></ol><ol type="a" id="1ed0656d-3119-80b9-9b65-f1623ccda799" class="numbered-list" start="2"><li>sociálna (cez system hodnôt+vzajomných záväzkov medzi zamestnancami)</li></ol><ol type="a" id="1ed0656d-3119-80b7-b7ef-c971876e0cd8" class="numbered-list" start="3"><li>sebakontrola zamestnanca</li></ol></li></ul><p id="1ed0656d-3119-80cb-8420-d46767afa684" class="">
+</p><h2 id="1ed0656d-3119-8010-9397-c30c2459ef9a" class="">Druhy kontroly</h2><ol type="1" id="1ed0656d-3119-804a-835b-e2f10c344a56" class="numbered-list" start="1"><li><mark class="highlight-orange"><mark class="highlight-yellow_background"><strong>Podľa pôvodu subjektov:</strong></mark></mark><ul id="1ed0656d-3119-8070-a47b-ce520465ca13" class="bulleted-list"><li style="list-style-type:disc">Interná (=kontroluje zamestnanec firmy)</li></ul><ul id="1ed0656d-3119-804a-b01b-ce75273ac8b0" class="bulleted-list"><li style="list-style-type:disc">Externá (=kontroluje vonkajší subjekt: verejnej správy, tretieho sektora)</li></ul></li></ol><ol type="1" id="1ed0656d-3119-8005-934f-f8016f33850c" class="numbered-list" start="2"><li>Podľa <mark class="highlight-orange"><mark class="highlight-yellow_background"><strong>miesta</strong></mark></mark><ul id="1ed0656d-3119-8006-b6f5-e5a2292ce4ad" class="bulleted-list"><li style="list-style-type:disc">priama(=v mieste čonnosti)</li></ul><ul id="1ed0656d-3119-8097-878e-d00cc8f2cd30" class="bulleted-list"><li style="list-style-type:disc">nepriama (pomocou iných ľudi/media/komunikačných kanalov)</li></ul></li></ol><ol type="1" id="1ed0656d-3119-80d5-bfd7-de0c29381196" class="numbered-list" start="3"><li>Podľa <mark class="highlight-orange"><mark class="highlight-yellow_background"><strong>širky objektov</strong></mark></mark><mark class="highlight-default"><mark class="highlight-default_background"><strong> (</strong></mark></mark>všeobecná /špecifická)</li></ol><ol type="1" id="1ed0656d-3119-802c-a892-f613a95fd55c" class="numbered-list" start="4"><li>Podľa <mark class="highlight-orange"><mark class="highlight-yellow_background">štadia kontrolovaného objektu</mark></mark><ul id="1ed0656d-3119-8029-aa76-fb55147513f2" class="bulleted-list"><li style="list-style-type:disc">preventivna(predbežná) (=pozor na oblasti zdrojov ktoré sa použivajú)</li></ul><ul id="1ed0656d-3119-8014-8329-c64ecd2eb902" class="bulleted-list"><li style="list-style-type:disc">priebežná (=pozor na prebiehajucé operacie)</li></ul><ul id="1ed0656d-3119-80c7-9462-c855c8ed2c15" class="bulleted-list"><li style="list-style-type:disc">následná (=kontrola výsledkov)</li></ul></li></ol><ol type="1" id="1ed0656d-3119-8091-b088-ed4b23043fb6" class="numbered-list" start="5"><li>Podľa<mark class="highlight-orange"><mark class="highlight-yellow_background"> rozsahu, akého sa kontrola musi dotknúť</mark></mark><ul id="1ed0656d-3119-8057-934e-e0a621a3172a" class="bulleted-list"><li style="list-style-type:disc">súborná (=overuje celý súbor)</li></ul><ul id="1ed0656d-3119-8023-a149-e87feed772e2" class="bulleted-list"><li style="list-style-type:disc">výberová (overuje vopred stanovenú vzorku z celého súboru)</li></ul><ul id="1ed0656d-3119-8005-9c94-e854ca174da0" class="bulleted-list"><li style="list-style-type:disc">náhodná (random)</li></ul></li></ol><ol type="1" id="1ed0656d-3119-80bf-a07a-ea611e23a4ba" class="numbered-list" start="6"><li>Podľa <mark class="highlight-orange"><mark class="highlight-yellow_background"><strong>pravidelnosti</strong></mark></mark>(pravidelná, nepravidelná)</li></ol><ol type="1" id="1ed0656d-3119-80e9-9ccc-f637eb2b6d96" class="numbered-list" start="7"><li>Podľa <mark class="highlight-orange"><mark class="highlight-yellow_background">úrovne riadenia </mark></mark>(na vrcholovej,strednje.nižšej)</li></ol><ol type="1" id="1ed0656d-3119-80e9-a3e1-fcf84222decb" class="numbered-list" start="8"><li>Podľa <mark class="highlight-orange"><mark class="highlight-yellow_background">obsahu</mark></mark></li></ol><p id="1ed0656d-3119-804d-a2f4-df5a08eb8867" class="">
+</p><p id="1ed0656d-3119-8034-a284-cbbb9822b0bc" class="">Úrovne kontroly</p><ul id="1ed0656d-3119-8058-913b-dc2c68f19108" class="bulleted-list"><li style="list-style-type:disc">operatívna (efektivné a účelové stanovenie úloh, procesy a zdroje, kontrola kvality, finančná)</li></ul><ul id="1ed0656d-3119-8083-a1d5-dee04ac78ef0" class="bulleted-list"><li style="list-style-type:disc">manažerská (=obstaravanie a využivanie organizačných zdrojov)</li></ul><ul id="1ed0656d-3119-8078-8adf-e4ae88552e9e" class="bulleted-list"><li style="list-style-type:disc">strategická(=ciele a strategia organizacie)</li></ul><ul id="1ed0656d-3119-8053-afbd-f3ddfe6b7278" class="bulleted-list"><li style="list-style-type:disc">taktická</li></ul><p id="1ed0656d-3119-802d-a336-f51f37562681" class="">
+</p><h2 id="1ed0656d-3119-80ff-81f5-e49615f3023a" class="">Kontrolný proces</h2><ol type="1" id="1ed0656d-3119-8045-b95f-e82b5b3fe547" class="numbered-list" start="1"><li>Určenie štandartov výkonu</li></ol><ol type="1" id="1ed0656d-3119-8082-8214-fa68d30427dc" class="numbered-list" start="2"><li>Meranie skutocných výkonov</li></ol><ol type="1" id="1ed0656d-3119-8080-acde-deaee59a0a56" class="numbered-list" start="3"><li>Porovnanie štandarty vs výkony</li></ol><ol type="1" id="1ed0656d-3119-804a-885f-d887e1bcb623" class="numbered-list" start="4"><li>Výkonanie nápravných opatrení</li></ol><p id="1ed0656d-3119-80ec-93d5-f9fa41c2cd5e" class="">
+</p><h2 id="1ed0656d-3119-80b3-86cb-f402316b04c6" class="">Metódy kontrolovania</h2><ul id="1ed0656d-3119-8014-87ef-f3fb219e57ba" class="bulleted-list"><li style="list-style-type:disc">Analýza, syntéza, dedukcia, indukcia, benchmarketing(=vyhľadavanie najlepšich praktík u konkurentov ktoré vedú ich k výborným výsledkom), Balanced Scorecard, komparačná metóda, audit, finančné výkazy a pod</li></ul><p id="1ed0656d-3119-802f-83d0-d714ff40e764" class="">
+</p><h2 id="1ed0656d-3119-8037-8c17-fd366063652f" class="">Techniky:</h2><ul id="1ed0656d-3119-8035-a2ff-eb86ad734d83" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange"><mark class="highlight-yellow_background"><strong>Kvalitatívne kontrolné techniky</strong></mark></mark><strong> (= </strong>založené na ľudskom úsudku výkonu.)</li></ul><ul id="1ed0656d-3119-80e2-b12b-c892f05b2caa" class="toggle"><li><details open=""><summary>viac</summary><table id="1ed0656d-3119-801b-aea4-dfb00ccb8879" class="simple-table"><tbody><tr id="1ed0656d-3119-80e3-b20a-cb0ee1864298"><td id="XU?U" class=""><strong>Technika</strong></td><td id="Nf|_" class=""><strong>Definícia</strong></td><td id="o{F]" class=""><strong>Kľúčové črty</strong></td></tr><tr id="1ed0656d-3119-809f-801b-dc34c4cb1052"><td id="XU?U" class=""><strong>Kvalitatívne kontrolné techniky</strong></td><td id="Nf|_" class=""></td><td id="o{F]" class=""></td></tr><tr id="1ed0656d-3119-801c-91fe-c81f8212800f"><td id="XU?U" class=""><strong>externý audit</strong></td><td id="Nf|_" class="">verifikovanie finančných záznamov externou agentúrou alebo jednotlivcom</td><td id="o{F]" class="">vykonávaný vonkajším subjektom (napr. agentúrou CPA)</td></tr><tr id="1ed0656d-3119-8092-af35-fd388c9ed6c0"><td id="XU?U" class=""><strong>interný audit</strong></td><td id="Nf|_" class="">verifikovanie finančných záznamov internou skupinou zamestnancov</td><td id="o{F]" class="">široký v zameraní vrátane zhodnotenia kontrolného systému</td></tr><tr id="1ed0656d-3119-80f2-8973-f18d08689fd3"><td id="XU?U" class=""><strong>manažérsky audit</strong></td><td id="Nf|_" class="">využitie techník auditu na zhodnotenie celkovej efektívnosti manažmentu</td><td id="o{F]" class="">preveruje veľký rozsah manažérskych praktík, postupov a procedúr</td></tr><tr id="1ed0656d-3119-8079-bff4-def401d42bdf"><td id="XU?U" class=""><strong>osobné pozorovanie</strong></td><td id="Nf|_" class="">pozorovanie manažéra z prvej ruky, ako dobre sa vykonávajú plány</td><td id="o{F]" class="">prirodzená súčasť práce manažéra</td></tr><tr id="1ed0656d-3119-800b-ab92-da2eec59e419"><td id="XU?U" class=""><strong>posúdenie výkonu</strong></td><td id="Nf|_" class="">formálna metóda alebo systém merajúci, hodnotiaci a posudzujúci výkon zamestnanca</td><td id="o{F]" class="">poukazuje na oblasti s deficitmi a oblasti pre nápravné opatrenia; manažér a člen skupiny spoločne vyriešia problém</td></tr></tbody></table></details></li></ul><p id="1ed0656d-3119-8077-b58a-f5674e04926c" class="">
+</p><ul id="1ed0656d-3119-804b-9a4d-e17c61c7e39e" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-orange"><mark class="highlight-yellow_background"><strong>Kvantitatívne kontrolné techniky</strong></mark></mark><strong> </strong>(založené na číselných ukazovateľoch výkonu (napr. počet objednávok vybavených za jednu hodinu )</li></ul><ul id="1ed0656d-3119-8049-9f62-e3b4b1e30764" class="toggle"><li><details open=""><summary>viac</summary><table id="1ed0656d-3119-8035-ad60-e4372d1438a1" class="simple-table"><tbody><tr id="1ed0656d-3119-80c3-9543-c7cb940d4535"><td id="ZGAS" class=""><strong>Technika</strong></td><td id="z}:O" class=""><strong>Definícia</strong></td><td id="|Gsm" class=""><strong>Kľúčové črty</strong></td></tr><tr id="1ed0656d-3119-80a9-8e03-f0f843b71ec5"><td id="ZGAS" class=""><strong>Kvantitatívne kontrolné techniky</strong></td><td id="z}:O" class=""></td><td id="|Gsm" class=""></td></tr><tr id="1ed0656d-3119-801f-b3b4-eb76d12f93ee"><td id="ZGAS" class=""><strong>Ganttov diagram</strong></td><td id="z}:O" class="">graf znázorňujúci plánovaný a skutočný progres prác na určitom projekte</td><td id="|Gsm" class="">opisuje progres projektu</td></tr><tr id="1ed0656d-3119-8071-9f03-f1548efc8fef"><td id="ZGAS" class=""><strong>metóda PERT</strong></td><td id="z}:O" class="">metóda plánujúca činnosti a udalosti využitím časových odhadov</td><td id="|Gsm" class="">meria, ako dobre projekt spĺňa časové plánovanie</td></tr><tr id="1ed0656d-3119-8021-94b0-ca997acdee91"><td id="ZGAS" class=""><strong>analýza rovnováhy nákladov a výnosov (Break-even Analysis)</strong></td><td id="z}:O" class="">pomer fixných nákladov k cene bez variabilných nákladov</td><td id="|Gsm" class="">meria výkon organizácie a poskytuje základ pre nápravné opatrenia</td></tr><tr id="1ed0656d-3119-80d3-84a1-c459f39a36f0"><td id="ZGAS" class=""><strong>optimálna veľkosť objednávky (angl. Economic-order Quantity – EOQ)</strong></td><td id="z}:O" class="">úroveň zásob, ktorá minimalizuje objednávanie a viazanie nákladov</td><td id="|Gsm" class="">zabraňuje tomu, aby organizácia mala príliš veľké alebo príliš malé zásoby na sklade</td></tr><tr id="1ed0656d-3119-80ac-920d-ed0ff5f747e2"><td id="ZGAS" class=""><strong>analýza odchýlok</strong></td><td id="z}:O" class="">dôležitý kontrolný nástroj v oblasti výroby</td><td id="|Gsm" class="">stanoví štandardy nákladov pre materiál, prácu a režijných nákladov a následne meria odchýlky od týchto nákladov</td></tr></tbody></table></details></li></ul><p id="1ed0656d-3119-8078-9719-c892e45203aa" class="">
+</p><h2 id="1ed0656d-3119-8067-957f-f1deb788ea24" class="">Postupy kontrolovania</h2><ul id="1ed0656d-3119-803e-a91f-e649878bd8f8" class="bulleted-list"><li style="list-style-type:disc">skupina<strong> t</strong><mark class="highlight-yellow_background"><strong>radičných postupov</strong></mark><strong> (</strong>Účtovníctvo,<br/>rozpočtovníctvo, štatistické výkazy, operatívna evidencia, rozbory hospodárskej činnosti, analýzy rozpočtového procesu a pod.)<br/></li></ul><ul id="1ed0656d-3119-8034-b6fd-ccab91fd8e92" class="bulleted-list"><li style="list-style-type:disc">skupina <mark class="highlight-yellow_background"><strong>moderných postupov</strong></mark> (Využitie matematických modelov, štatistiky a algoritmov a stanovenie najvhodnejšej alternatívy budúceho stavu.)</li></ul><p id="1ed0656d-3119-80e5-877d-d82b2c0b1549" class="">
+</p><p id="1ed0656d-3119-8057-b093-cd2f1dda1c3d" class="">
+</p><h2 id="1ed0656d-3119-8075-98fd-f14d2e794e4f" class="">Prístupy k meraniu výkonu</h2><figure id="1ed0656d-3119-8005-a51c-e3420130b6a5" class="image"><a href="13%20Kontrolovanie%201ed0656d3119804c877fec6cfc4b4d7e/image.png"><img style="width:720px" src="13%20Kontrolovanie%201ed0656d3119804c877fec6cfc4b4d7e/image.png"/></a></figure><p id="1ed0656d-3119-800d-90d5-d6d6ed8ad46c" class="">
+</p><h3 id="1ed0656d-3119-8087-9644-ceaa87982b33" class=""><mark class="highlight-pink_background">Predpoklady efektívnej kontroly</mark></h3><ul id="1ed0656d-3119-80f0-9e72-dbec2f616138" class="bulleted-list"><li style="list-style-type:disc">Strategické zameranie kontroly</li></ul><ul id="1ed0656d-3119-80f7-ac5a-f1a093096c07" class="bulleted-list"><li style="list-style-type:disc">Dostatok relevantných informácií</li></ul><ul id="1ed0656d-3119-8025-bd44-cf4ad1af5ce1" class="bulleted-list"><li style="list-style-type:disc">Existencia štandardov a ich hierarchia</li></ul><ul id="1ed0656d-3119-80a7-a501-d51d22aecff1" class="bulleted-list"><li style="list-style-type:disc">Znalosť metód a techník, zručnosť ich ovládania.</li></ul><ul id="1ed0656d-3119-8078-a53e-cf59f991e0be" class="bulleted-list"><li style="list-style-type:disc">Dodržiavať zmysel a cieľ kontroly</li></ul><p id="1ed0656d-3119-80c0-bfe8-fc02b6839773" class="">
+</p><h3 id="1ed0656d-3119-80da-b093-ceb36080a511" class=""><mark class="highlight-pink_background">Štandardy kontroly</mark></h3><ul id="1ed0656d-3119-80c4-8902-e84f95f6b37f" class="bulleted-list"><li style="list-style-type:disc"><strong>fyzické štandardy,</strong></li></ul><ul id="1ed0656d-3119-8027-a3f7-ceef49d07bec" class="bulleted-list"><li style="list-style-type:disc"><strong>nákladové</strong></li></ul><ul id="1ed0656d-3119-808b-8f85-c9038f750951" class="bulleted-list"><li style="list-style-type:disc"><strong>kapitálové</strong></li></ul><ul id="1ed0656d-3119-805c-ae43-e517eaa7afa0" class="bulleted-list"><li style="list-style-type:disc"><strong>príjmové</strong></li></ul><ul id="1ed0656d-3119-8080-8671-e91be024993b" class="bulleted-list"><li style="list-style-type:disc"><strong>programové</strong></li></ul><ul id="1ed0656d-3119-80e2-8c6a-d226b5961b35" class="bulleted-list"><li style="list-style-type:disc"><strong>nekvantifikovateľné</strong></li></ul><p id="1ed0656d-3119-801d-bbbf-cc2179b91deb" class="">
+</p><h3 id="1ed0656d-3119-805a-8332-c93682efd60e" class="">Možnosti zniženia/eliminacie potreby kontrlovania:</h3><ul id="1ed0656d-3119-80d6-97cb-fa057ebb8a8a" class="bulleted-list"><li style="list-style-type:disc">automatizacia</li></ul><ul id="1ed0656d-3119-80fe-800a-f2641001e616" class="bulleted-list"><li style="list-style-type:disc">centralizacia</li></ul><ul id="1ed0656d-3119-8064-90a1-c111fbdd1cef" class="bulleted-list"><li style="list-style-type:disc">zdieľanie rizika (=rozdeliť riziko s ezternimy subjektami:poistovňami)</li></ul><p id="1ed0656d-3119-80f5-82d6-c60e24fcc305" class="">
+</p><p id="1ed0656d-3119-8092-8079-c54dd82e0166" class="">
+</p><p id="1ed0656d-3119-80ee-9e2c-fa15c27168a7" class="">Pričiny potreby kontrol:</p><ul id="1ed0656d-3119-80a1-8738-c775809ef924" class="bulleted-list"><li style="list-style-type:disc">nedostatočne nasmerovanie</li></ul><ul id="1ed0656d-3119-806c-bfc1-d721b99a0261" class="bulleted-list"><li style="list-style-type:disc">motivačné problémy</li></ul><ul id="1ed0656d-3119-80fa-ac0c-c7a1adc47ccb" class="bulleted-list"><li style="list-style-type:disc">osobné obmedzenia</li></ul><p id="1ed0656d-3119-8061-919f-e7f34466a0ba" class="">
+</p><p id="1ed0656d-3119-8087-b67d-c35b8a4f20f7" class="">Trendy kontrolovania:</p><figure id="1ed0656d-3119-80f0-8a3e-db3920e04f47" class="image"><a href="13%20Kontrolovanie%201ed0656d3119804c877fec6cfc4b4d7e/IMG_5347.jpeg"><img style="width:400px" src="13%20Kontrolovanie%201ed0656d3119804c877fec6cfc4b4d7e/IMG_5347.jpeg"/></a></figure><p id="1ed0656d-3119-806c-bce9-d035ac2e936e" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+<a href="/index.html" class="back-to-home">Back to Initial Page</a>
+<script src="securePage.js"></script>
+<script src="/verifyIP.js"></script>
+</body></html>
