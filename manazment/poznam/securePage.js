@@ -28,6 +28,7 @@
 
 function detecter(){
   let back = false;
+
   document.addEventListener('keydown', function(e) {
     if ((e.key === 'PrintScreen' || e.code === 'PrintScreen') && !back) {
       window.location.href = 'anotherPage.html';
@@ -47,8 +48,13 @@ function detecter(){
   });
 
   window.addEventListener('blur', function() {
-    if(!back)
-    window.location.href = 'anotherPage.html';
+    if(!back) window.location.href = 'anotherPage.html';
+  });
+
+  window.addEventListener('focus', function() {
+    if(!back && document.visibilityState === 'hidden') {
+      window.location.href = 'anotherPage.html';
+    }
   });
 
   document.addEventListener('mouseup', function() {
@@ -59,8 +65,7 @@ function detecter(){
   });
 
   document.addEventListener('copy', function(e) {
-    if(!back)
-    e.preventDefault();
+    if(!back) e.preventDefault();
     window.location.href = 'anotherPage.html';
   });
 
